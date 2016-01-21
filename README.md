@@ -1,3 +1,5 @@
+![GitHub Logo](http://www.tampico.com/sites/default/files/homepage-slide-images/p-slide_pineapple-coconut.png)
+
 CSE110M240T8: The Assets
 ============
 

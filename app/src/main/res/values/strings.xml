@@ -13,4 +13,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="go_to_scan">Scan Item</string>
+    <string name="camera_message">This is the camera.</string>
 </resources>

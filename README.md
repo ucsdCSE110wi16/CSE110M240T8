@@ -5,9 +5,10 @@ CSE110M240T8: The Assets
 
 The repository for our CSE110 group
 
-Test Subheading
+Course Logistics
 ------------
- This is a testing subheading.
+  * The team schedule is posted in a file named Schedule.txt.
+  * The team user stories are posted in a file named CSE 100 User Stories.pdf
 
 Test Subheading 2
 ------------

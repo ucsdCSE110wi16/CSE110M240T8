@@ -1,9 +1,8 @@
 ![GitHub Logo](http://www.tampico.com/sites/default/files/homepage-slide-images/p-slide_pineapple-coconut.png)
 
-CSE110M240T8: The Assets
+Project Piña Colada
 ============
-
-The repository for our CSE110 group
+CSE110M240T8: The Assets
 
 Course Logistics
 ------------

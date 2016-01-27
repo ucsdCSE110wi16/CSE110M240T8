@@ -336,6 +336,12 @@ public class CameraActivity extends AppCompatActivity {
             }
         }
         else {
+            //store dummy value for testing with emulator
+            barcode = new Barcode();
+            barcode.displayValue = "0000";
+            Intent data = new Intent(this,ProductInfo.class);
+            data.putExtra(BarcodeObject,barcode);
+            startActivity(data);
             Log.d(TAG,"no barcode detected");
         }
         return barcode != null;

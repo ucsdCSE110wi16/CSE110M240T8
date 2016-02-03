@@ -34,7 +34,9 @@
         </activity>
         <activity android:name=".startscreen" />
         <activity android:name=".CameraActivity" />
-        <activity android:name=".ProductInfo"></activity>
+        <activity android:name=".ProductInfo" />
+        <activity android:name=".ReadReviewScreen" />
+        <activity android:name=".WriteReviewScreen" />
     </application>
 
 </manifest>

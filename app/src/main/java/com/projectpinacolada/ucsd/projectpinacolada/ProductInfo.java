@@ -3,8 +3,8 @@ package com.projectpinacolada.ucsd.projectpinacolada;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
-
 import com.google.android.gms.vision.barcode.Barcode;
 
 public class ProductInfo extends AppCompatActivity {
@@ -53,5 +53,19 @@ public class ProductInfo extends AppCompatActivity {
     //getter method if needed
     public long getUPC_int() {
         return UPC_int;
+    }
+
+    // Moves user from ProductInfo activity to ReadReviewScreen activity.
+    public void readReviewsButtonClicked(View view) {
+
+        Intent intent = new Intent(this, ReadReviewScreen.class);
+        startActivity(intent);
+    }
+
+    // Moves user from ProductInfo activity to WriteReviewScreen activity.
+    public void writeReviewButtonClicked(View view) {
+
+        Intent intent = new Intent(this, WriteReviewScreen.class);
+        startActivity(intent);
     }
 }

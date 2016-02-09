@@ -15,12 +15,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import android.util.Log;
 
 public class ProductInfo extends AppCompatActivity {
 
-    private TextView upcCode;   // Text box shown to the user.
-    private String upcString;   // UPC value as string.
+    private TextView productDescriptionTV;   // Text box shown to the user.
+    private String productDescriptionString;   // UPC value as string.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +31,8 @@ public class ProductInfo extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         // Initializing barcode information as TextView.
-        upcCode = (TextView) findViewById(R.id.upcCode);
-        upcString = getIntent().getStringExtra("barcode");
+        productDescriptionTV = (TextView) findViewById(R.id.upcCode);
+        productDescriptionString = getIntent().getStringExtra("barcode");
 
         // IMPORTANT: Do not move. Must remain outside try block for proper scoping with finally block.
         HttpURLConnection connection = null;
@@ -41,7 +40,7 @@ public class ProductInfo extends AppCompatActivity {
 
         try {
             // Dynamically-generated URL based on scanned barcode.
-            URL url = new URL("http://api.upcdatabase.org/json/53f300b1f4f72f42dc66bee14f15b7a6/" + upcString);
+            URL url = new URL("http://api.upcdatabase.org/json/53f300b1f4f72f42dc66bee14f15b7a6/" + productDescriptionString);
             // Opening connection.
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
@@ -90,7 +89,7 @@ public class ProductInfo extends AppCompatActivity {
 
         if (jsonObject != null)
             try {
-                upcCode.setText(jsonObject.getString("description"));
+                productDescriptionTV.setText(jsonObject.getString("description"));
             } catch (JSONException e) {
                 e.printStackTrace();
             }

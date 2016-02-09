@@ -19,7 +19,7 @@ android {
     }
 }
 
-dependencies {
+def var = dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
@@ -29,4 +29,7 @@ dependencies {
     // Important - the CameraSource implementation in this project requires version 8.1 or higher.
     compile 'com.google.android.gms:play-services:8.4.0'
     compile 'com.android.support:design:23.1.1'
+    compile(group: 'oauth.signpost', name: 'signpost-core', version: '1.2.1.2')
+    compile(group: 'oauth.signpost', name: 'signpost-commonshttp4', version: '1.2.1.2')
 }
+var

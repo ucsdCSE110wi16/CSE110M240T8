@@ -31,5 +31,10 @@ def var = dependencies {
     compile 'com.android.support:design:23.1.1'
     compile(group: 'oauth.signpost', name: 'signpost-core', version: '1.2.1.2')
     compile(group: 'oauth.signpost', name: 'signpost-commonshttp4', version: '1.2.1.2')
+
+    //Parse
+    compile 'com.parse.bolts:bolts-android:1.4.0'
+    compile 'com.parse:parse-android:1.13.0'
+
 }
 var

@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import com.google.android.gms.vision.barcode.Barcode;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -17,14 +15,12 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import android.util.Log;
 
 public class ProductInfo extends AppCompatActivity {
 
-    private Intent data;        //the data that comes with the intent
-    private Barcode barcode;    //barcode object
-    private TextView upcCode;   //text shown to the user
-    private String upcString;   //hold UPC value as a string
-    private long upcInt = 0;    //hold UPC value as a long -- can not be an int, barcodes are too large
+    private TextView upcCode;   // Text box shown to the user.
+    private String upcString;   // UPC value as string.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,11 +94,6 @@ public class ProductInfo extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-    }
-
-    //getter method if needed
-    public long getUPC_int() {
-        return upcInt;
     }
 
     // Moves user from ProductInfo activity to ReadReviewScreen activity.

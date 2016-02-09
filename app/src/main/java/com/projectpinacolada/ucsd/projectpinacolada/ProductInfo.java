@@ -8,11 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import com.google.android.gms.vision.barcode.Barcode;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,31 +31,39 @@ public class ProductInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_info);
 
+        // Sets thread policy to allow for network traffic to run in the main thread.
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
 
-        //get the value of the text field
+        // Initializing barcode information as TextView.
         upcCode = (TextView) findViewById(R.id.upcCode);
         upcString = getIntent().getStringExtra("barcode");
 
+        // IMPORTANT: Do not move. Must remain outside try block for proper scoping with finally block.
         HttpURLConnection connection = null;
         BufferedReader reader = null;
 
         try {
+            // Dynamically-generated URL based on scanned barcode.
             URL url = new URL("http://api.upcdatabase.org/json/53f300b1f4f72f42dc66bee14f15b7a6/" + upcString);
+            // Opening connection.
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
 
+            // Creating input streams.
             InputStream stream = connection.getInputStream();
             reader = new BufferedReader(new InputStreamReader(stream));
 
+            // String buffer to parse from input stream.
             StringBuffer buffer = new StringBuffer();
             String line = "";
 
+            // Adding entire input from input stream to string buffer.
             while ((line = reader.readLine()) != null) {
                 buffer.append(line);
             }
 
+            // Adding input data as string to JSON object.
             JSONObject jsonObject = new JSONObject(buffer.toString());
             updateUPCValue(jsonObject);
 
@@ -80,7 +85,11 @@ public class ProductInfo extends AppCompatActivity {
         }
     }
 
-    //change the text shown to the user
+    /**
+     * Sets product description TextView from input as JSON object.
+     *
+     * @param jsonObject - JSON object to parse to set product description TextView.
+     */
     private void updateUPCValue(JSONObject jsonObject) {
 
         if (jsonObject != null)

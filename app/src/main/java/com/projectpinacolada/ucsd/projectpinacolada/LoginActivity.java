@@ -33,6 +33,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.parse.*;
+import com.parse.ParseObject;
+import com.parse.Parse;
+
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
@@ -63,10 +67,28 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mProgressView;
     private View mLoginFormView;
 
+    //Parse
+    private ParseUser parseUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        //Parse Stuff
+        // Enable Local Datastore.
+        Parse.enableLocalDatastore(this);
+        // Add your initialization code here
+        Parse.initialize(this);
+        ParseUser.enableAutomaticUser();
+
+        ParseObject testObject = new ParseObject("TestObject");
+        testObject.put("foo", "bar");
+        testObject.saveInBackground();
+
+        //user
+        parseUser = new ParseUser();
+
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
@@ -87,8 +109,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         mEmailSignInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                //attemptLogin();
-                openNextActivity();
+                attemptLogin();
+                //openNextActivity();
             }
         });
 
@@ -191,11 +213,29 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // form field with an error.
             focusView.requestFocus();
         } else {
-            // Show a progress spinner, and kick off a background task to
+            /*// Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
             mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+            mAuthTask.execute((Void) null);*/
+
+            //attempt parse login
+            parseUser.setEmail(email);
+            parseUser.setPassword(password);
+            parseUser.setUsername(email);
+
+            //attempt login
+            try {
+                parseUser.logIn(email,password);
+                openNextActivity();
+            } catch (ParseException e) {
+                e.printStackTrace();
+                mEmailView.setError(getString(R.string.error_invalid_email));
+                mPasswordView.setError(getString(R.string.error_incorrect_password));
+                focusView = mEmailView;
+                focusView.requestFocus();
+            }
+
         }
     }
 

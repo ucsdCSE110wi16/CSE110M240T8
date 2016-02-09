@@ -69,8 +69,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/action_sign_in"
+                android:text="@string/action_sign_in_short"
                 android:textStyle="bold" />
+
+            <Button
+                style="?android:textAppearanceSmall"
+                android:id="@+id/register_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/action_register"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal" />
 
         </LinearLayout>
     </ScrollView>

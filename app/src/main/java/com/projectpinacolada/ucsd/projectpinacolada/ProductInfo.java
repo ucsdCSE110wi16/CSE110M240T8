@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.BufferedReader;
@@ -18,8 +19,9 @@ import java.net.URL;
 
 public class ProductInfo extends AppCompatActivity {
 
-    private TextView productDescriptionTV;   // Text box shown to the user.
-    private String productDescriptionString;   // UPC value as string.
+    private TextView productNameTV;             // Text box displaying product name.
+    private TextView productDescriptionTV;      // Text box displaying product description.
+    private String upcCode;                     // UPC code as string.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,16 +33,27 @@ public class ProductInfo extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         // Initializing barcode information as TextView.
-        productDescriptionTV = (TextView) findViewById(R.id.upcCode);
-        productDescriptionString = getIntent().getStringExtra("barcode");
+        productNameTV = (TextView) findViewById(R.id.productName);
+        productDescriptionTV = (TextView) findViewById(R.id.productDescription);
+        upcCode = getIntent().getStringExtra("barcode");
+
+        // Establishing connection to Walmart API.
+        establishConnection();
+    }
+
+    /**
+     * Establishes connection with endpoint to acquire product description.
+     */
+    public void establishConnection() {
 
         // IMPORTANT: Do not move. Must remain outside try block for proper scoping with finally block.
         HttpURLConnection connection = null;
         BufferedReader reader = null;
 
         try {
-            // Dynamically-generated URL based on scanned barcode.
-            URL url = new URL("http://api.upcdatabase.org/json/53f300b1f4f72f42dc66bee14f15b7a6/" + productDescriptionString);
+            // Dynamically-generated URL for product description.
+            URL url = new URL("http://api.walmartlabs.com/v1/items?apiKey=qxqmszsqwghafeaax6ug77k7&upc=" + upcCode);
+
             // Opening connection.
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
@@ -60,7 +73,7 @@ public class ProductInfo extends AppCompatActivity {
 
             // Adding input data as string to JSON object.
             JSONObject jsonObject = new JSONObject(buffer.toString());
-            updateUPCValue(jsonObject);
+            updateProductNameAndDescription(jsonObject);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -72,8 +85,8 @@ public class ProductInfo extends AppCompatActivity {
             if (connection != null)
                 connection.disconnect();
             try {
-                if (reader != null) {
-                    reader.close();}
+                if (reader != null)
+                    reader.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -81,18 +94,29 @@ public class ProductInfo extends AppCompatActivity {
     }
 
     /**
-     * Sets product description TextView from input as JSON object.
+     * Sets product name and description TextViews from input as JSON object.
      *
-     * @param jsonObject - JSON object to parse to set product description TextView.
+     * @param jsonObject - JSON object to parse to set product name TextView.
      */
-    private void updateUPCValue(JSONObject jsonObject) {
+    private void updateProductNameAndDescription(JSONObject jsonObject) {
 
-        if (jsonObject != null)
-            try {
-                productDescriptionTV.setText(jsonObject.getString("description"));
-            } catch (JSONException e) {
-                e.printStackTrace();
+        JSONArray jsonArray = null;
+
+        try {
+            jsonArray = jsonObject.getJSONArray("items");
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                try {
+                    JSONObject currentObject = jsonArray.getJSONObject(i);
+                    productNameTV.setText(currentObject.getString("name"));
+                    productDescriptionTV.setText(currentObject.getString("shortDescription"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     // Moves user from ProductInfo activity to ReadReviewScreen activity.

@@ -82,9 +82,9 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         Parse.initialize(this);
         ParseUser.enableAutomaticUser();
 
-        ParseObject testObject = new ParseObject("TestObject");
+        /*ParseObject testObject = new ParseObject("TestObject");
         testObject.put("foo", "bar");
-        testObject.saveInBackground();
+        testObject.saveInBackground();*/
 
         //user
         parseUser = new ParseUser();

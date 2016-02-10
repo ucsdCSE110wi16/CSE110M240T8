@@ -40,5 +40,8 @@
     <string name="verify_password_tag">"Verify Password"</string>
     <string name="location_tag">"Location"</string>
     <string name="register_tag">"Register"</string>
+
+    <string name="test_username">test@test.com</string>
+    <string name="test_password">test123</string>
 </resources>
 

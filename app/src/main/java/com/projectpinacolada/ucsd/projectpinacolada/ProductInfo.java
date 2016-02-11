@@ -1,11 +1,20 @@
 package com.projectpinacolada.ucsd.projectpinacolada;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,10 +32,17 @@ public class ProductInfo extends AppCompatActivity {
     private TextView productDescriptionTV;      // Text box displaying product description.
     private String upcCode;                     // UPC code as string.
 
+    //Button load_img;
+    ImageView img;
+    Bitmap bitmap;
+    ProgressDialog pDialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_info);
+        img = (ImageView)findViewById(R.id.img);
 
         // Sets thread policy to allow for network traffic to run in the main thread.
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -36,9 +52,45 @@ public class ProductInfo extends AppCompatActivity {
         productNameTV = (TextView) findViewById(R.id.productName);
         productDescriptionTV = (TextView) findViewById(R.id.productDescription);
         upcCode = getIntent().getStringExtra("barcode");
-
         // Establishing connection to Walmart API.
         establishConnection();
+
+    }
+
+    // Handles loading an image from a url
+    private class LoadImage extends AsyncTask<String, String, Bitmap> {
+        @Override
+        protected void onPreExecute() {
+            // display a progress dialog window for loading image
+            super.onPreExecute();
+            pDialog = new ProgressDialog(ProductInfo.this);
+            pDialog.setMessage("Loading Image ....");
+            pDialog.show();
+
+        }
+        protected Bitmap doInBackground(String... args) {
+            try {
+                bitmap = BitmapFactory.decodeStream((InputStream)new URL(args[0]).getContent());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+        protected void onPostExecute(Bitmap image) {
+            // set image if img object not null
+            if(image != null){
+                img.setImageBitmap(image);
+                pDialog.dismiss();
+
+            }else{
+                // error handling
+                pDialog.dismiss();
+                Toast.makeText(ProductInfo.this, "Image Does Not exist or Network Error", Toast.LENGTH_SHORT).show();
+
+            }
+        }
     }
 
     /**
@@ -75,6 +127,7 @@ public class ProductInfo extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject(buffer.toString());
             updateProductNameAndDescription(jsonObject);
 
+
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -110,6 +163,9 @@ public class ProductInfo extends AppCompatActivity {
                     JSONObject currentObject = jsonArray.getJSONObject(i);
                     productNameTV.setText(currentObject.getString("name"));
                     productDescriptionTV.setText(currentObject.getString("shortDescription"));
+                    new LoadImage().execute(currentObject.getString("largeImage"));
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -132,4 +188,8 @@ public class ProductInfo extends AppCompatActivity {
         Intent intent = new Intent(this, WriteReviewScreen.class);
         startActivity(intent);
     }
+
+
+
+
 }

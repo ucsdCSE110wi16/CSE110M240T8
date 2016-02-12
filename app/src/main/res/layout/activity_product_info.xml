@@ -15,7 +15,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Product Name"
         android:id="@+id/productName"
-        android:layout_alignTop="@+id/img"
         android:layout_alignParentBottom="false"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"

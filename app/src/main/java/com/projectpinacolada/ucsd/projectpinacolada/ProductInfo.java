@@ -58,7 +58,9 @@ public class ProductInfo extends AppCompatActivity {
     }
 
     // Handles loading an image from a url
-    private class LoadImage extends AsyncTask<String, String, Bitmap> {
+    public class LoadImage extends AsyncTask<String, String, Bitmap> {
+
+
         @Override
         protected void onPreExecute() {
             // display a progress dialog window for loading image
@@ -70,7 +72,7 @@ public class ProductInfo extends AppCompatActivity {
         }
         protected Bitmap doInBackground(String... args) {
             try {
-                bitmap = BitmapFactory.decodeStream((InputStream)new URL(args[0]).getContent());
+                bitmap = BitmapFactory.decodeStream((InputStream) new URL(args[0]).getContent());
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -87,11 +89,13 @@ public class ProductInfo extends AppCompatActivity {
             }else{
                 // error handling
                 pDialog.dismiss();
-                Toast.makeText(ProductInfo.this, "Image Does Not exist or Network Error", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ProductInfo.this, "Image Does Not exist or Network Error", Toast.LENGTH_SHORT).show();
 
             }
         }
     }
+
+
 
     /**
      * Establishes connection with endpoint to acquire product description.

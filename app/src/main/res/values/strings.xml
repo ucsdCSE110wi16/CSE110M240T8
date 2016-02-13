@@ -20,6 +20,9 @@
     <string name="go_to_scan">Scan Item</string>
     <string name="camera_message">This is the camera.</string>
     <string name="upc">UPC Code</string>
+    <string name="write_review_hint">You can write your review here.</string>
+    <string name="write_review_submit">Submit Review</string>
+
 
     <string name="ok">OK</string>
     <string name="permission_camera_rationale">Access to the camera is needed for detection</string>

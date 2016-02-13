@@ -15,8 +15,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Write Review Page"
         android:id="@+id/textView"
-        android:layout_marginTop="133dp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/img"
         android:layout_centerHorizontal="true" />
 
     <ImageView
@@ -26,5 +25,29 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/review_text"
+        android:layout_below="@+id/textView"
+        android:layout_toRightOf="@+id/img"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="110dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:hint="@string/write_review_hint" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/write_review_submit"
+        android:id="@+id/write_review_submit"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="41dp" />
 
 </RelativeLayout>

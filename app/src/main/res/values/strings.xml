@@ -51,5 +51,9 @@
 
     <string name="test_username">test@test.com</string>
     <string name="test_password">test123</string>
+
+    <!-- Strings related to read review -->
+    <string name="reviewerlabel">Reviewer:</string>
+    <string name="reviewlabel">Review</string>
 </resources>
 

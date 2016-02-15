@@ -8,12 +8,11 @@ import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.projectpinacolada.ucsd.projectpinacolada.ReadReviews.ReadReviewScreen;
 
 import org.json.JSONArray;
 import org.json.JSONException;

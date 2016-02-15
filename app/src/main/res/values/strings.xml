@@ -24,6 +24,7 @@
     <string name="write_review_submit">Submit Review</string>
     <string name="product_name">Product Name</string>
     <string name="product_description">Product Description</string>
+    <string name="review_title">Title your review here</string>
 
     <string name="read_reviews">Read Reviews</string>
     <string name="write_review">Write Review</string>

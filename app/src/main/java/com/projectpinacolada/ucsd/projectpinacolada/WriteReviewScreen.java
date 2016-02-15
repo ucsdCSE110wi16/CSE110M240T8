@@ -18,6 +18,8 @@ public class WriteReviewScreen extends AppCompatActivity {
     // Class Variables
     Button submitButton;
     EditText reviewTextField;
+    EditText reviewTitleTextField;
+    String reviewTitle;
     String reviewText;
     Double reviewRating;
     RatingBar ratingBar;
@@ -30,8 +32,10 @@ public class WriteReviewScreen extends AppCompatActivity {
 
         // Initializing Text Views and Fields
         productNameTV = (TextView) findViewById(R.id.productName);
-        reviewTextField = (EditText) findViewById(R.id.review_text);
+        reviewTitleTextField = (EditText) findViewById(R.id.reviewTitle);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+        reviewTextField = (EditText) findViewById(R.id.review_text);
+
 
         // Populate product name
         productNameTV.setText(getIntent().getStringExtra("productName"));
@@ -64,6 +68,7 @@ public class WriteReviewScreen extends AppCompatActivity {
     // and storing it in WriteReviewScreen.reviewText
     private void setReviewDetails(){
         reviewText = reviewTextField.getText().toString();
+        reviewTitle = reviewTitleTextField.getText().toString();
         reviewRating = (double) ratingBar.getRating();
     }
 
@@ -82,6 +87,7 @@ public class WriteReviewScreen extends AppCompatActivity {
         review.put("upcCode", Long.valueOf(getIntent().getStringExtra("upcCode")));
         review.put("reviewText", reviewText);
         review.put("rating", reviewRating);
+        review.put("reviewTitle", reviewTitle);
         review.saveInBackground();
 
         return true;

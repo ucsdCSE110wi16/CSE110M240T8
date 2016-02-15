@@ -21,7 +21,7 @@ public class WriteReviewScreen extends AppCompatActivity {
     EditText reviewTitleTextField;
     String reviewTitle;
     String reviewText;
-    Double reviewRating;
+    double reviewRating;
     RatingBar ratingBar;
 
 

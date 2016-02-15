@@ -79,7 +79,7 @@ public class ListViewAdapter extends BaseAdapter{
                 .getPopulation());
         // Set the results into ImageView
         imageLoader.DisplayImage(worldpopulationlist.get(position).getFlag(),
-            holder.flag);
+            holder.flag); */
         // Listen for ListView Item Click
         view.setOnClickListener(new OnClickListener() {
 
@@ -87,22 +87,17 @@ public class ListViewAdapter extends BaseAdapter{
             public void onClick(View arg0) {
                 // Send single item click data to SingleItemView Class
                 Intent intent = new Intent(context, SingleItemView.class);
-                // Pass all data rank
-                intent.putExtra("rank",
-                        (worldpopulationlist.get(position).getRank()));
-                // Pass all data country
-                intent.putExtra("country",
-                        (worldpopulationlist.get(position).getCountry()));
-                // Pass all data population
-                intent.putExtra("population",
-                        (worldpopulationlist.get(position).getPopulation()));
-                // Pass all data flag
-                intent.putExtra("flag",
-                        (worldpopulationlist.get(position).getFlag()));
+                // Pass all data reviewers
+                intent.putExtra("reviewers",
+                        (reviewsList.get(position).getReviewers()));
+                // Pass all data reviews
+                intent.putExtra("reviews",
+                        (reviewsList.get(position).getReviews()));
+
                 // Start SingleItemView Class
                 context.startActivity(intent);
             }
-        });*/
+        });
         return view;
     }
 }

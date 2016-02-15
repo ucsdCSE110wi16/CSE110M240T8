@@ -10,7 +10,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import java.lang.String;
 
 import com.projectpinacolada.ucsd.projectpinacolada.R;
 
@@ -39,6 +41,7 @@ public class ListViewAdapter extends BaseAdapter{
     public class ViewHolder {
         TextView reviewers;
         TextView reviews;
+        RatingBar ratingBar;
     }
 
     @Override
@@ -64,9 +67,7 @@ public class ListViewAdapter extends BaseAdapter{
             // Locate the TextViews in listview_item.xml
             holder.reviewers = (TextView) view.findViewById(R.id.reviewer);
             holder.reviews = (TextView) view.findViewById(R.id.review);
-            // holder.population = (TextView) view.findViewById(R.id.population);
-            // Locate the ImageView in listview_item.xml
-            // holder.flag = (ImageView) view.findViewById(R.id.flag);
+            holder.ratingBar = (RatingBar) view.findViewById((R.id.reviewRatingBar));
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
@@ -74,6 +75,7 @@ public class ListViewAdapter extends BaseAdapter{
         // Set the results into TextViews
         holder.reviewers.setText(reviewsList.get(position).getReviewers());
         holder.reviews.setText(reviewsList.get(position).getReviews());
+        holder.ratingBar.setRating((float) reviewsList.get(position).getReviewRating());
         /*
         holder.population.setText(worldpopulationlist.get(position)
                 .getPopulation());

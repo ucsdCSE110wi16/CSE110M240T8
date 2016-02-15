@@ -25,6 +25,7 @@ public class ReadReviewScreen extends AppCompatActivity {
     ListViewAdapter adapter;
     private List<Reviews> reviewsList = null;
     // long upc = 37000424314;
+    int reviewRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,20 +57,23 @@ public class ReadReviewScreen extends AppCompatActivity {
             reviewsList = new ArrayList<Reviews>();
             try {
                 // Locate the class table named "Review" in Parse.com
-                ParseQuery<ParseObject> query = ParseQuery.getQuery(
-                        "Review");
+                ParseQuery<ParseObject> query = ParseQuery.getQuery("Review");
+
                 // Pulls reviews of the specific product
                 Intent i = getIntent();
+
+                // Query Parse
+                // Locate the column named "createdAt" in Parse.com and order list by ascending
                 query.whereEqualTo("upcCode", Long.valueOf(i.getStringExtra("upcCode")));
-                //query.whereEqualTo("upcCode",);
-                // Locate the column named "createdAt" in Parse.com and order list
-                // by ascending
                 query.orderByAscending("createdAt");
                 ob = query.find();
+
+                // Add view map for each review in the parse object
                 for (ParseObject Review : ob) {
                     Reviews map = new Reviews();
                     map.setReviewers((String) Review.get("reviewer"));
                     map.setReviews((String) Review.get("reviewText"));
+                    map.setReviewRating ((double) Review.getDouble("rating"));
                     reviewsList.add(map);
                 }
             } catch (ParseException e) {

@@ -7,20 +7,41 @@
         android:id="@+id/reviewerlabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/reviewerlabel" />
+        android:text="@string/reviewerlabel"
+        android:layout_below="@+id/reviewRatingBar"
+        android:layout_alignLeft="@+id/review"
+        android:layout_alignStart="@+id/review" />
 
     <TextView
         android:id="@+id/reviewer"
+        android:text="Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/reviewerlabel" />
+        android:layout_above="@+id/review"
+        android:layout_toRightOf="@+id/reviewRatingBar"
+        android:layout_toEndOf="@+id/reviewRatingBar" />
 
     <TextView
         android:id="@+id/review"
+        android:text="Review"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/reviewerlabel" />
-        <!--android:text="@string/reviewlabel"-->
+        android:layout_marginLeft="26dp"
+        android:layout_marginStart="26dp"
+        android:layout_below="@+id/reviewerlabel"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reviewRatingBar"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/reviewerlabel"
+        android:layout_alignStart="@+id/reviewerlabel"
+        android:layout_marginTop="37dp" />
+    <!--android:text="@string/reviewlabel"-->
 <!--
     <TextView
         android:id="@+id/country"

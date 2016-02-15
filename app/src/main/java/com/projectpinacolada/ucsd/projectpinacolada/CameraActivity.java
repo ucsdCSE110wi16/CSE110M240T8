@@ -339,6 +339,7 @@ public class CameraActivity extends AppCompatActivity {
             //store dummy value for testing with emulator
             barcode = new Barcode();
             barcode.displayValue = "037000424314";
+            //barcode.displayValue = "024600010030";
             Intent data = new Intent(this, ProductInfo.class);
             data.putExtra("barcode", barcode.displayValue);
             startActivity(data);

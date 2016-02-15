@@ -184,6 +184,10 @@ public class ProductInfo extends AppCompatActivity {
     public void readReviewsButtonClicked(View view) {
 
         Intent intent = new Intent(this, ReadReviewScreen.class);
+        // Send product UPC to the write activity
+        intent.putExtra("upcCode",upcCode);
+        intent.putExtra("productName", productName);
+
         startActivity(intent);
     }
 

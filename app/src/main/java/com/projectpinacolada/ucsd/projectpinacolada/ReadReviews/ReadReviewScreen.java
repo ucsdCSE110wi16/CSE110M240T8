@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.List;
+import android.content.Intent;
 
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -23,6 +24,7 @@ public class ReadReviewScreen extends AppCompatActivity {
     ProgressDialog mProgressDialog;
     ListViewAdapter adapter;
     private List<Reviews> reviewsList = null;
+    // long upc = 37000424314;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,10 +55,14 @@ public class ReadReviewScreen extends AppCompatActivity {
             // Create the array
             reviewsList = new ArrayList<Reviews>();
             try {
-                // Locate the class table named "Country" in Parse.com
-                ParseQuery<ParseObject> query = new ParseQuery<ParseObject>(
+                // Locate the class table named "Review" in Parse.com
+                ParseQuery<ParseObject> query = ParseQuery.getQuery(
                         "Review");
-                // Locate the column named "ranknum" in Parse.com and order list
+                // Pulls reviews of the specific product
+                Intent i = getIntent();
+                query.whereEqualTo("upcCode", Long.valueOf(i.getStringExtra("upcCode")));
+                //query.whereEqualTo("upcCode",);
+                // Locate the column named "createdAt" in Parse.com and order list
                 // by ascending
                 query.orderByAscending("createdAt");
                 ob = query.find();

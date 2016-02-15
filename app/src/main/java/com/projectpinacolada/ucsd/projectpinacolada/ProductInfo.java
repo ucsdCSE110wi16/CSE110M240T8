@@ -31,6 +31,7 @@ public class ProductInfo extends AppCompatActivity {
     private TextView productNameTV;             // Text box displaying product name.
     private TextView productDescriptionTV;      // Text box displaying product description.
     private String upcCode;                     // UPC code as string.
+    private String productName;                 // Product Name as string
 
     //Button load_img;
     ImageView img;
@@ -165,7 +166,8 @@ public class ProductInfo extends AppCompatActivity {
             for (int i = 0; i < jsonArray.length(); i++) {
                 try {
                     JSONObject currentObject = jsonArray.getJSONObject(i);
-                    productNameTV.setText(currentObject.getString("name"));
+                    productName = currentObject.getString("name");
+                    productNameTV.setText(productName);
                     productDescriptionTV.setText(currentObject.getString("shortDescription"));
                     new LoadImage().execute(currentObject.getString("largeImage"));
 
@@ -193,6 +195,7 @@ public class ProductInfo extends AppCompatActivity {
 
         // Send product UPC to the write activity
         intent.putExtra("upcCode",upcCode);
+        intent.putExtra("productName", productName);
 
         startActivity(intent);
     }

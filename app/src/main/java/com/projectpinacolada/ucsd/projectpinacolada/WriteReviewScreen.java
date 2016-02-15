@@ -5,27 +5,40 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.RatingBar;
 
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
 public class WriteReviewScreen extends AppCompatActivity {
 
+    private TextView productNameTV;             // Text box displaying product name
+
     // Class Variables
     Button submitButton;
     EditText reviewTextField;
     String reviewText;
     Double reviewRating;
+    RatingBar ratingBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_review_screen);
 
+        // Initializing Text Views and Fields
+        productNameTV = (TextView) findViewById(R.id.productName);
         reviewTextField = (EditText) findViewById(R.id.review_text);
+        ratingBar = (RatingBar) findViewById(R.id.ratingBar);
+
+        // Populate product name
+        productNameTV.setText(getIntent().getStringExtra("productName"));
+
 
         // TODO get the real star ratings
-        reviewRating = 4.5;
+        //reviewRating = 4.5;
 
         // create submit button
         submitButton = (Button) findViewById(R.id.write_review_submit);
@@ -51,6 +64,7 @@ public class WriteReviewScreen extends AppCompatActivity {
     // and storing it in WriteReviewScreen.reviewText
     private void setReviewDetails(){
         reviewText = reviewTextField.getText().toString();
+        reviewRating = (double) ratingBar.getRating();
     }
 
     // Method to publish WriteReviewScreen data fields to parse

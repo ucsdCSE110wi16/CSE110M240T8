@@ -65,16 +65,16 @@ public class ReadReviewScreen extends AppCompatActivity {
                 // Query Parse
                 // Locate the column named "createdAt" in Parse.com and order list by ascending
                 query.whereEqualTo("upcCode", Long.valueOf(i.getStringExtra("upcCode")));
-                query.orderByAscending("createdAt");
-                ob = query.find();
+                    query.orderByAscending("createdAt");
+                    ob = query.find();
 
-                // Add view map for each review in the parse object
-                for (ParseObject Review : ob) {
-                    Reviews map = new Reviews();
-                    map.setReviewers((String) Review.get("reviewer"));
-                    map.setReviews((String) Review.get("reviewText"));
-                    map.setReviewRating ((double) Review.getDouble("rating"));
-                    reviewsList.add(map);
+                    // Add view map for each review in the parse object
+                    for (ParseObject Review : ob) {
+                        Reviews map = new Reviews();
+                        map.setReviewers((String) Review.get("reviewer"));
+                        map.setReviews((String) Review.get("reviewText"));
+                        map.setReviewRating ((double) Review.getDouble("rating"));
+                        reviewsList.add(map);
                 }
             } catch (ParseException e) {
                 Log.e("Error", e.getMessage());

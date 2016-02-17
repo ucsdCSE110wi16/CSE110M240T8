@@ -10,9 +10,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.projectpinacolada.ucsd.projectpinacolada.ReadReviews.ReadReviewScreen;
+import com.projectpinacolada.ucsd.projectpinacolada.ReadReviews.Reviews;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -24,13 +29,15 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 
 public class ProductInfo extends AppCompatActivity {
 
     private TextView productNameTV;             // Text box displaying product name.
     private TextView productDescriptionTV;      // Text box displaying product description.
+    private RatingBar averageRatingBar;         // Rating bar displaying average rating.
     private String upcCode;                     // UPC code as string.
-    private String productName;                 // Product Name as string
+    private String productName;                 // Product name as string.
 
     //Button load_img;
     ImageView img;
@@ -51,7 +58,9 @@ public class ProductInfo extends AppCompatActivity {
         // Initializing barcode information as TextView.
         productNameTV = (TextView) findViewById(R.id.productName);
         productDescriptionTV = (TextView) findViewById(R.id.productDescription);
+        averageRatingBar = (RatingBar) findViewById(R.id.averageRating);
         upcCode = getIntent().getStringExtra("barcode");
+
         // Establishing connection to Walmart API.
         establishConnection();
 
@@ -178,6 +187,31 @@ public class ProductInfo extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        // Set average rating.
+        averageRatingBar.setRating((float) getAverageRating(upcCode));
+    }
+
+    // Takes UPC code and computes average ratings for our product
+    private double getAverageRating(String upcCode) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Review");
+        query.whereEqualTo("upcCode", Long.valueOf(upcCode));
+
+        List<ParseObject> ob = null;
+        try {
+            ob = query.find();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        // Add view map for each review in the parse object
+        double cumSum = 0;
+        int numRatings = 0;
+        for (ParseObject Review : ob) {
+            Reviews allRatings = new Reviews();
+            cumSum += Review.getDouble("rating");
+            ++numRatings;
+        }
+        return cumSum / numRatings;
     }
 
     // Moves user from ProductInfo activity to ReadReviewScreen activity.

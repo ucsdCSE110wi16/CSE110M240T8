@@ -338,7 +338,10 @@ public class CameraActivity extends AppCompatActivity {
         else {
             //store dummy value for testing with emulator
             barcode = new Barcode();
+            // barcode for olay
             barcode.displayValue = "037000424314";
+
+            // barcode for salt
             //barcode.displayValue = "024600010030";
             Intent data = new Intent(this, ProductInfo.class);
             data.putExtra("barcode", barcode.displayValue);

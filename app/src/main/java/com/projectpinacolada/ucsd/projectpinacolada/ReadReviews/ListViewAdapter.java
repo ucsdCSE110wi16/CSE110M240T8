@@ -79,7 +79,7 @@ public class ListViewAdapter extends BaseAdapter{
         /*
         holder.population.setText(worldpopulationlist.get(position)
                 .getPopulation());
-        // Set the results into ImageView
+
         imageLoader.DisplayImage(worldpopulationlist.get(position).getFlag(),
             holder.flag); */
         // Listen for ListView Item Click

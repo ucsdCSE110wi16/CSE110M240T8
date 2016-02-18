@@ -5,20 +5,18 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.projectpinacolada.ucsd.projectpinacolada.ReadReviews.ReadReviewScreen;
 import com.projectpinacolada.ucsd.projectpinacolada.ReadReviews.Reviews;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +31,7 @@ import java.util.List;
 
 public class ProductInfo extends AppCompatActivity {
 
+    private final String walmartApiUrl = "http://api.walmartlabs.com/v1/items?apiKey=qxqmszsqwghafeaax6ug77k7&upc=";
     private TextView productNameTV;             // Text box displaying product name.
     private TextView productDescriptionTV;      // Text box displaying product description.
     private RatingBar averageRatingBar;         // Rating bar displaying average rating.
@@ -44,31 +43,26 @@ public class ProductInfo extends AppCompatActivity {
     Bitmap bitmap;
     ProgressDialog pDialog;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_info);
-        img = (ImageView)findViewById(R.id.img);
-
-        // Sets thread policy to allow for network traffic to run in the main thread.
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
 
         // Initializing barcode information as TextView.
         productNameTV = (TextView) findViewById(R.id.productName);
         productDescriptionTV = (TextView) findViewById(R.id.productDescription);
+        img = (ImageView) findViewById(R.id.img);
         averageRatingBar = (RatingBar) findViewById(R.id.averageRating);
         upcCode = getIntent().getStringExtra("barcode");
 
-        // Establishing connection to Walmart API.
-        establishConnection();
+        // Creates new thread for network connection and updates product name and description TVs.
+        new SetProductInfoFromUrl().execute(walmartApiUrl);
 
     }
 
     // Handles loading an image from a url
     public class LoadImage extends AsyncTask<String, String, Bitmap> {
-
 
         @Override
         protected void onPreExecute() {
@@ -77,8 +71,8 @@ public class ProductInfo extends AppCompatActivity {
             pDialog = new ProgressDialog(ProductInfo.this);
             pDialog.setMessage("Loading Image ....");
             pDialog.show();
-
         }
+
         protected Bitmap doInBackground(String... args) {
             try {
                 bitmap = BitmapFactory.decodeStream((InputStream) new URL(args[0]).getContent());
@@ -95,7 +89,7 @@ public class ProductInfo extends AppCompatActivity {
                 img.setImageBitmap(image);
                 pDialog.dismiss();
 
-            }else{
+            } else {
                 // error handling
                 pDialog.dismiss();
                 //Toast.makeText(ProductInfo.this, "Image Does Not exist or Network Error", Toast.LENGTH_SHORT).show();
@@ -104,58 +98,72 @@ public class ProductInfo extends AppCompatActivity {
         }
     }
 
-
-
     /**
-     * Establishes connection with endpoint to acquire product description.
+     * Establishes connection with endpoint and updates product name and description TextViews.
      */
-    public void establishConnection() {
+    private class SetProductInfoFromUrl extends AsyncTask<String, Void, JSONObject> {
 
-        // IMPORTANT: Do not move. Must remain outside try block for proper scoping with finally block.
-        HttpURLConnection connection = null;
-        BufferedReader reader = null;
+        protected void onPostExecute(JSONObject productNameAndDescription) {
 
-        try {
-            // Dynamically-generated URL for product description.
-            URL url = new URL("http://api.walmartlabs.com/v1/items?apiKey=qxqmszsqwghafeaax6ug77k7&upc=" + upcCode);
+            if (productNameAndDescription != null)
+                updateProductInfo(productNameAndDescription);
+        }
 
-            // Opening connection.
-            connection = (HttpURLConnection) url.openConnection();
-            connection.connect();
+        @Override
+        protected JSONObject doInBackground(String... args) {
 
-            // Creating input streams.
-            InputStream stream = connection.getInputStream();
-            reader = new BufferedReader(new InputStreamReader(stream));
+            // IMPORTANT: Do not move. Must remain outside try block for proper scoping with finally block.
+            HttpURLConnection connection = null;
+            BufferedReader reader = null;
+            JSONObject productNameAndDescription = null;
 
-            // String buffer to parse from input stream.
-            StringBuffer buffer = new StringBuffer();
-            String line = "";
-
-            // Adding entire input from input stream to string buffer.
-            while ((line = reader.readLine()) != null) {
-                buffer.append(line);
-            }
-
-            // Adding input data as string to JSON object.
-            JSONObject jsonObject = new JSONObject(buffer.toString());
-            updateProductNameAndDescription(jsonObject);
-
-
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } finally {
-            if (connection != null)
-                connection.disconnect();
             try {
-                if (reader != null)
-                    reader.close();
+
+                // Dynamically-generated URL for product description.
+                URL url = new URL(args[0] + upcCode);
+
+                Log.e("URL", url.toString());
+
+                // Opening connection.
+                connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+
+                // Creating input streams.
+                InputStream stream = connection.getInputStream();
+                reader = new BufferedReader(new InputStreamReader(stream));
+
+                // String buffer to parse from input stream.
+                StringBuffer buffer = new StringBuffer();
+                String line = "";
+
+                // Adding entire input from input stream to string buffer.
+                while ((line = reader.readLine()) != null) {
+                    buffer.append(line);
+                }
+
+                productNameAndDescription = new JSONObject(buffer.toString());
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+                Log.e("URL", "Bad URL");
             } catch (IOException e) {
                 e.printStackTrace();
+                Log.e("IO", "Bad IO");
+            } catch (JSONException e) {
+                e.printStackTrace();
+                Log.e("JSON", "Bad JSON");
+            } finally {
+                if (connection != null)
+                    connection.disconnect();
+                try {
+                    if (reader != null)
+                        reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+
+            return productNameAndDescription;
         }
     }
 
@@ -164,7 +172,7 @@ public class ProductInfo extends AppCompatActivity {
      *
      * @param jsonObject - JSON object to parse to set product name TextView.
      */
-    private void updateProductNameAndDescription(JSONObject jsonObject) {
+    private void updateProductInfo(JSONObject jsonObject) {
 
         JSONArray jsonArray = null;
 
@@ -187,12 +195,14 @@ public class ProductInfo extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         // Set average rating.
         averageRatingBar.setRating((float) getAverageRating(upcCode));
     }
 
     // Takes UPC code and computes average ratings for our product
     private double getAverageRating(String upcCode) {
+
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Review");
         query.whereEqualTo("upcCode", Long.valueOf(upcCode));
 
@@ -236,8 +246,5 @@ public class ProductInfo extends AppCompatActivity {
 
         startActivity(intent);
     }
-
-
-
 
 }

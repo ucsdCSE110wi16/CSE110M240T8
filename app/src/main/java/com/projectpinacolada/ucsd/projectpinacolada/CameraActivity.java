@@ -30,6 +30,8 @@ import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.parse.ParseObject;
+import com.parse.ParseUser;
 import com.projectpinacolada.ucsd.projectpinacolada.camera.CameraSource;
 import com.projectpinacolada.ucsd.projectpinacolada.camera.CameraSourcePreview;
 import com.projectpinacolada.ucsd.projectpinacolada.camera.GraphicOverlay;
@@ -329,6 +331,9 @@ public class CameraActivity extends AppCompatActivity {
                 Intent data = new Intent(this, ProductInfo.class);
                 data.putExtra("barcode", barcode.displayValue);
                 setResult(CommonStatusCodes.SUCCESS, data);
+
+                // Write a record into Parse.barcodeScans
+                uploadToDB(barcode.displayValue);
                 startActivity(data);
             }
             else {
@@ -350,6 +355,22 @@ public class CameraActivity extends AppCompatActivity {
         }
         return barcode != null;
     }
+
+
+    // Method to connect to Parse, and upload a record into barcodeScans
+    private boolean uploadToDB (String upcCode) {
+
+        ParseObject barcodeScan = new ParseObject("barcodeScans");
+        ParseUser currentUser = ParseUser.getCurrentUser();
+
+        barcodeScan.put("userObjectId", currentUser.getObjectId());
+        barcodeScan.put("upcCode", Long.valueOf(upcCode));
+        barcodeScan.saveInBackground();
+
+        return true;
+    }
+
+
 
     private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
 

@@ -176,7 +176,13 @@ public class ProductInfo extends AppCompatActivity {
                     JSONObject currentObject = jsonArray.getJSONObject(i);
                     productName = currentObject.getString("name");
                     productNameTV.setText(productName);
-                    productDescriptionTV.setText(currentObject.getString("shortDescription"));
+                    if(currentObject.has("shortDescription")){
+                        productDescriptionTV.setText(currentObject.getString("shortDescription"));
+                    }
+                    else if(currentObject.has("longDescription")) {
+                        String description = currentObject.getString("longDescription");
+                        productDescriptionTV.setText(description.substring(0,Math.min(description.length(), 200)));
+                    }
                     new LoadImage().execute(currentObject.getString("largeImage"));
 
 

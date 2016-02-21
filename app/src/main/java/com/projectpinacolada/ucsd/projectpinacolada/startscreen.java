@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class startscreen extends AppCompatActivity {
 
@@ -20,10 +21,24 @@ public class startscreen extends AppCompatActivity {
                 openCamera();
             }
         });
+
+        ImageButton profileButton = (ImageButton) findViewById(R.id.userButton);
+        profileButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openUserProfile();
+            }
+        });
     }
 
     public void openCamera() {
         Intent intent = new Intent(this,CameraActivity.class);
+
+        startActivity(intent);
+    }
+
+    public void openUserProfile() {
+        Intent intent = new Intent(this, UserProfile.class);
 
         startActivity(intent);
     }

@@ -46,9 +46,10 @@
         <activity android:name=".CameraActivity" />
         <activity android:name=".ProductInfo" />
         <activity android:name=".ReadReviews.ReadReviewScreen" />
-        <activity android:name=".ReadReviews.SingleItemView"/>
+        <activity android:name=".ReadReviews.SingleItemView" />
         <activity android:name=".WriteReviewScreen" />
-        <activity android:name=".Register"></activity>
+        <activity android:name=".Register" />
+        <activity android:name=".UserProfile"></activity>
     </application>
 
 </manifest>

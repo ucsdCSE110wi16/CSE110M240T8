@@ -53,6 +53,10 @@
     <string name="verify_password_tag">"Verify Password"</string>
     <string name="location_tag">"Location"</string>
     <string name="register_tag">"Register"</string>
+    <string name="num_reviews">Number of Reviews: </string>
+    <string name="zero_reviews">0</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="logout">Logout</string>
 
     <string name="test_username">test@test.com</string>
     <string name="test_password">test123</string>

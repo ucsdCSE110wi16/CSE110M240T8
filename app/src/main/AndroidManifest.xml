@@ -43,7 +43,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".startscreen" />
-        <activity android:name=".CameraActivity" />
+        <activity android:name=".CameraActivity"
+            android:noHistory="true" />
+
         <activity android:name=".ProductInfo" />
         <activity android:name=".ReadReviews.ReadReviewScreen" />
         <activity android:name=".ReadReviews.SingleItemView" />

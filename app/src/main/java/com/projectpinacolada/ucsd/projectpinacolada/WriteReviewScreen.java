@@ -2,6 +2,7 @@ package com.projectpinacolada.ucsd.projectpinacolada;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,36 +41,76 @@ public class WriteReviewScreen extends AppCompatActivity {
         // Populate product name
         productNameTV.setText(getIntent().getStringExtra("productName"));
 
-
-        // TODO get the real star ratings
-        //reviewRating = 4.5;
-
         // create submit button
         submitButton = (Button) findViewById(R.id.write_review_submit);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setReviewDetails();
-                boolean retVal = uploadToDB();
+                boolean retVal = setReviewDetails();
+                //if there was not an error, continue
+                if(!retVal){
 
-                if (!retVal) {
-                    // TODO msg user with error
-                }
-                else {
-                    // Return us back to product info page
-                    finish();
-                }
+                    retVal = uploadToDB();
 
+                    if (!retVal) {
+                        // TODO msg user with error
+                    } else {
+                        // Return us back to product info page
+                        finish();
+                    }
+
+                }
             }
         });
     }
 
     // Setter method for extracting the review details
     // and storing it in WriteReviewScreen.reviewText
-    private void setReviewDetails(){
+    // also will do some error checking to ensure values have been set
+    private boolean setReviewDetails(){
         reviewText = reviewTextField.getText().toString();
         reviewTitle = reviewTitleTextField.getText().toString();
         reviewRating = (double) ratingBar.getRating();
+
+        return checkErrors();
+    }
+
+    //checks all fields, if there is an error, return true
+    private boolean checkErrors() {
+        reviewTextField.setError(null);
+        reviewTitleTextField.setError(null);
+
+        View focusView = null;
+        boolean error = false;
+
+        // check for error with title
+        if(TextUtils.isEmpty(reviewTitle)){
+            reviewTitleTextField.setError(getString(R.string.error_field_required));
+            focusView = reviewTitleTextField;
+            error = true;
+        }
+        else if(!titleValid()){
+            focusView = reviewTitleTextField;
+            error = true;
+        }
+
+        //check for error with review
+        if(TextUtils.isEmpty(reviewText)){
+            reviewTextField.setError(getString(R.string.error_field_required));
+            focusView = reviewTextField;
+            error = true;
+        }
+        else if(!reviewValid()){
+            focusView = reviewTextField;
+            error = true;
+        }
+
+        //if there was an error, set the focus to the error field
+        if(error) {
+            focusView.requestFocus();
+        }
+
+        return error;
     }
 
     // Method to publish WriteReviewScreen data fields to parse
@@ -91,5 +132,33 @@ public class WriteReviewScreen extends AppCompatActivity {
         review.saveInBackground();
 
         return true;
+    }
+
+    private boolean titleValid() {
+        if(reviewTitle.length() < 3) {
+            reviewTitleTextField.setError(getString(R.string.review_title_length_min));
+            return false;
+        }
+        else if(reviewTitle.length() > 50) {
+            reviewTitleTextField.setError(getString(R.string.review_title_length_max));
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    private boolean reviewValid() {
+        if(reviewText.length() < 14) {
+            reviewTextField.setError(getString(R.string.review_text_length_min));
+            return false;
+        }
+        else if(reviewText.length() > 1001) {
+            reviewTextField.setError(getString(R.string.review_text_length_max));
+            return false;
+        }
+        else {
+            return true;
+        }
     }
 }

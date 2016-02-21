@@ -85,6 +85,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/averageRating"
         android:layout_alignParentBottom="true"
+        android:isIndicator="true"
         android:layout_centerHorizontal="true" />
 
 

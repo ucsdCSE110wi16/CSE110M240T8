@@ -244,6 +244,10 @@ public class ProductInfo extends AppCompatActivity {
     }
 
 
-
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(this, startscreen.class);
+        startActivity(intent);
+    }
 
 }

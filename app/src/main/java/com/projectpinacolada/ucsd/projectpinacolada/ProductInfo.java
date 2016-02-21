@@ -39,6 +39,8 @@ public class ProductInfo extends AppCompatActivity {
     private String upcCode;                     // UPC code as string.
     private String productName;                 // Product name as string.
 
+    private boolean started = false;            // Local flag to determine if the process has been started yet
+
     //Button load_img;
     ImageView img;
     Bitmap bitmap;
@@ -50,6 +52,7 @@ public class ProductInfo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_info);
         img = (ImageView)findViewById(R.id.img);
+        started = true;
 
         // Sets thread policy to allow for network traffic to run in the main thread.
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -240,7 +243,16 @@ public class ProductInfo extends AppCompatActivity {
         intent.putExtra("upcCode",upcCode);
         intent.putExtra("productName", productName);
 
-        startActivity(intent);
+        // To get the return value, this must be a call for result
+        startActivityForResult(intent, 1);
     }
 
+    //when we return from writing a review, the average rating will be updated
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1){
+            averageRatingBar.setRating((float) getAverageRating(upcCode));
+        }
+    }
 }

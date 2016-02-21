@@ -1,5 +1,7 @@
 package com.projectpinacolada.ucsd.projectpinacolada;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -46,22 +48,32 @@ public class WriteReviewScreen extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean retVal = setReviewDetails();
-                //if there was not an error, continue
-                if(!retVal){
 
-                    retVal = uploadToDB();
-
-                    if (!retVal) {
-                        // TODO msg user with error
-                    } else {
-                        // Return us back to product info page
-                        finish();
-                    }
-
-                }
+                //call the submitClicked method
+                submitClicked();
             }
         });
+    }
+
+    //check for any errors, then submit to the database and return
+    private void submitClicked() {
+        boolean retVal = setReviewDetails();
+        //if there was not an error, continue
+        if(!retVal){
+
+            retVal = uploadToDB();
+
+            if (!retVal) {
+                // TODO msg user with error
+            } else {
+                // Return us back to product info page
+
+                Intent intent = new Intent(this, ProductInfo.class);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+            }
+
+        }
     }
 
     // Setter method for extracting the review details

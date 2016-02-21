@@ -63,7 +63,7 @@
                 android:layout_marginBottom="15dp"
                 android:ems="10"
                 android:hint="@string/password_tag"
-                android:inputType="textVisiblePassword|textPassword"
+                android:inputType="textPassword"
                 android:maxLines="1" />
 
             <EditText
@@ -78,7 +78,7 @@
                 android:layout_marginBottom="15dp"
                 android:ems="10"
                 android:hint="@string/verify_password_tag"
-                android:inputType="textVisiblePassword|textPassword"
+                android:inputType="textPassword"
                 android:maxLines="1" />
 
             <EditText

@@ -44,6 +44,15 @@ public class Register extends AppCompatActivity {
         mVerifyPasswrodField = (EditText) findViewById(R.id.verifyPasswordField);
         mLocationField = (EditText) findViewById(R.id.locationField);
 
+        Intent intent = getIntent();
+        if(intent.hasExtra("email")){
+            mEmailField.setText(intent.getStringExtra("email"));
+        }
+        if(intent.hasExtra("password")){
+            mPasswordField.setText(intent.getStringExtra("password"));
+            mVerifyPasswrodField.setText(intent.getStringExtra("password"));
+        }
+
         Button registerButton = (Button) findViewById(R.id.registerButton);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -136,6 +136,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private void openRegisterActivity() {
         Intent intent = new Intent(this, Register.class);
 
+        if(!mEmailView.getText().toString().isEmpty()){
+            intent.putExtra("email", mEmailView.getText().toString());
+        }
+        if(!mPasswordView.getText().toString().isEmpty()){
+            intent.putExtra("password", mPasswordView.getText().toString());
+        }
+
         startActivity(intent);
     }
 
@@ -225,7 +232,27 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
-            focusView.requestFocus();
+            //focusView.requestFocus();
+
+            // for now we will login with dummy for testing when noting is input
+            // TODO: Remove when testing is done
+            parseUser.setEmail(getString(R.string.test_username));
+            parseUser.setPassword(getString(R.string.test_password));
+            parseUser.setUsername(getString(R.string.test_username));
+
+            //attempt login
+            try {
+                parseUser.logIn(getString(R.string.test_username),getString(R.string.test_password));
+                openNextActivity();
+            } catch (ParseException e) {
+                e.printStackTrace();
+                mEmailView.setError(getString(R.string.error_invalid_email));
+                mPasswordView.setError(getString(R.string.error_incorrect_password));
+                focusView = mEmailView;
+                focusView.requestFocus();
+            }
+
+
         } else {
             /*// Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
@@ -254,12 +281,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     }
 
     private boolean isEmailValid(String email) {
-        //TODO: Replace this with your own logic
         return email.contains("@");
     }
 
     private boolean isPasswordValid(String password) {
-        //TODO: Replace this with your own logic
         return password.length() > 4;
     }
 

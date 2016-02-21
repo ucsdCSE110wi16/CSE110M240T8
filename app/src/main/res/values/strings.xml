@@ -40,8 +40,12 @@
     <string name="auto_focus">Auto Focus</string>
     <string name="use_flash">Use Flash</string>
     <string name="barcode_success">Barcode read successfully</string>
-    <string name="barcode_failure">No barcode captured</string>
+    <string name="barcode_failure">No barcode captured.</string>
     <string name="barcode_error">"Error reading barcode: %1$s"</string>
+    <string name="barcode_message">Would you like to try again, or see a random item?</string>
+    <string name="barcode_try_again">Try Again</string>
+    <string name="barcode_random">Random</string>
+    <string name="olay">Olay!</string>
 
     <string name="name_tag">Name</string>
     <string name="email_tag">"Email"</string>

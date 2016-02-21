@@ -37,6 +37,8 @@ import com.projectpinacolada.ucsd.projectpinacolada.camera.CameraSourcePreview;
 import com.projectpinacolada.ucsd.projectpinacolada.camera.GraphicOverlay;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class CameraActivity extends AppCompatActivity {
 
@@ -67,6 +69,8 @@ public class CameraActivity extends AppCompatActivity {
     private ScaleGestureDetector scaleGestureDetector;
     private GestureDetector gestureDetector;
 
+    private ArrayList<String> validUPCs;
+
     /**
      * Initializes the UI and creates the detector pipeline.
      */
@@ -81,6 +85,7 @@ public class CameraActivity extends AppCompatActivity {
         // read parameters from the intent used to launch the activity.
         boolean autoFocus = true;
         boolean useFlash = false;
+        validUPCs = new ArrayList<>();
 
         // Check for the camera permission before accessing the camera.  If the
         // permission is not granted yet, request permission.
@@ -341,21 +346,57 @@ public class CameraActivity extends AppCompatActivity {
             }
         }
         else {
-            //store dummy value for testing with emulator
-            barcode = new Barcode();
-            // barcode for olay
-            barcode.displayValue = "037000424314";
 
-            // barcode for salt
-            //barcode.displayValue = "024600010030";
-            Intent data = new Intent(this, ProductInfo.class);
-            data.putExtra("barcode", barcode.displayValue);
-            startActivity(data);
-            Log.d(TAG,"no barcode detected");
+            //Display an alert dialog to see if user wants to try again or get a random item
+            AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+            builder1.setTitle(R.string.barcode_failure);
+            builder1.setMessage(R.string.barcode_message);
+            builder1.setCancelable(true);
+            builder1.setIconAttribute(android.R.attr.alertDialogIcon);
+
+            builder1.setPositiveButton(
+                    R.string.barcode_try_again,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            builder1.setNegativeButton(
+                    R.string.barcode_random,
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                            randomCall();
+                        }
+                    });
+
+            AlertDialog alert11 = builder1.create();
+            alert11.show();
+
         }
         return barcode != null;
     }
 
+    public void randomCall(){
+        //Initialize Array
+        if(validUPCs.isEmpty()){
+            //add valid upcCodes
+            validUPCs.add("796019829038");
+            validUPCs.add("883904333791");
+            validUPCs.add("886102281383");
+            validUPCs.add("849803066055");
+            validUPCs.add("037000424314");
+            validUPCs.add("024600010030");
+        }
+        Random randomGenerator = new Random();
+        Barcode barcodeValid = new Barcode();
+        barcodeValid.displayValue = validUPCs.get(randomGenerator.nextInt(5));
+        Intent data = new Intent(this, ProductInfo.class);
+        data.putExtra("barcode", barcodeValid.displayValue);
+        startActivity(data);
+
+    }
 
     // Method to connect to Parse, and upload a record into barcodeScans
     private boolean uploadToDB (String upcCode) {

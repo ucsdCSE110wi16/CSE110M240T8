@@ -50,7 +50,6 @@ public class Register extends AppCompatActivity {
         }
         if(intent.hasExtra("password")){
             mPasswordField.setText(intent.getStringExtra("password"));
-            mVerifyPasswrodField.setText(intent.getStringExtra("password"));
         }
 
         Button registerButton = (Button) findViewById(R.id.registerButton);

@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -180,11 +181,11 @@ public class ProductInfo extends AppCompatActivity {
                     productName = currentObject.getString("name");
                     productNameTV.setText(productName);
                     if(currentObject.has("shortDescription")){
-                        productDescriptionTV.setText(currentObject.getString("shortDescription"));
+                        productDescriptionTV.setText(currentObject.getString(Html.fromHtml("shortDescription").toString()));
                     }
                     else if(currentObject.has("longDescription")) {
                         String description = currentObject.getString("longDescription");
-                        productDescriptionTV.setText(description.substring(0,Math.min(description.length(), 200)));
+                        productDescriptionTV.setText(Html.fromHtml(description).toString().substring(0,Math.min(description.length(), 200)));
                     }
                     new LoadImage().execute(currentObject.getString("largeImage"));
 

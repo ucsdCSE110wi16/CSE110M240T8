@@ -75,18 +75,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //Parse Stuff
-        // Enable Local Datastore.
-        Parse.enableLocalDatastore(this);
-        // Add your initialization code here
-        Parse.initialize(this);
-        ParseUser.enableAutomaticUser();
-
-        /*ParseObject testObject = new ParseObject("TestObject");
-        testObject.put("foo", "bar");
-        testObject.saveInBackground();*/
-
-        //user
+        //create a user object
         parseUser = new ParseUser();
 
         // Set up the login form.

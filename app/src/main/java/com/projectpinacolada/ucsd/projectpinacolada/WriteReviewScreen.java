@@ -66,6 +66,10 @@ public class WriteReviewScreen extends AppCompatActivity {
             if (!retVal) {
                 // TODO msg user with error
             } else {
+                //increment the number of reviews from the user
+                ParseUser.getCurrentUser().increment("numReviews");
+                ParseUser.getCurrentUser().saveEventually();
+
                 // Return us back to product info page
 
                 Intent intent = new Intent(this, ProductInfo.class);

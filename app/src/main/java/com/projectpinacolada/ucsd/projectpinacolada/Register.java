@@ -189,6 +189,7 @@ public class Register extends AppCompatActivity {
         user.setUsername(email);
         user.put("name", name);
         user.put("location",location);
+        user.put("numReviews",0);
 
         try {
             user.signUp();

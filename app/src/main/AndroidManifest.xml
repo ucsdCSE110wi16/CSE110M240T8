@@ -45,26 +45,28 @@
             </intent-filter>
             -->
         </activity>
-        <activity android:name=".startscreen" />
+        <activity android:name=".startscreen" android:screenOrientation="portrait"/>
         <activity
             android:name=".CameraActivity"
-            android:noHistory="true" />
-        <activity android:name=".ProductInfo" />
-        <activity android:name=".ReadReviews.ReadReviewScreen" />
-        <activity android:name=".ReadReviews.SingleItemView" />
-        <activity android:name=".WriteReviewScreen" />
+            android:noHistory="true"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ProductInfo" android:screenOrientation="portrait"/>
+        <activity android:name=".ReadReviews.ReadReviewScreen" android:screenOrientation="portrait"/>
+        <activity android:name=".ReadReviews.SingleItemView" android:screenOrientation="portrait"/>
+        <activity android:name=".WriteReviewScreen" android:screenOrientation="portrait"/>
         <activity
             android:name=".Register"
-            android:noHistory="true" />
-        <activity android:name=".UserProfile" />
-        <activity android:name=".SplashScreen">
+            android:noHistory="true"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".UserProfile" android:screenOrientation="portrait"/>
+        <activity android:name=".SplashScreen" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".EditProfile" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

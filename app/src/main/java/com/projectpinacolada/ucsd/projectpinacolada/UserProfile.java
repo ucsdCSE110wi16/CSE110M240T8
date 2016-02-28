@@ -39,6 +39,13 @@ public class UserProfile extends AppCompatActivity {
                 logout();
             }
         });
+
+        editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startEditProfile();
+            }
+        });
     }
 
     private void setUserInfo() {
@@ -46,6 +53,11 @@ public class UserProfile extends AppCompatActivity {
         name.setText(currUser.getString("name"));
         location.setText(currUser.getString("location"));
         reviews.setText(Integer.toString(currUser.getInt("numReviews")));
+    }
+
+    private void startEditProfile() {
+        Intent intent = new Intent(this, EditProfile.class);
+        startActivity(intent);
     }
 
     private void logout() {

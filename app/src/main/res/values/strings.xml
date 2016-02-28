@@ -70,6 +70,7 @@
     <string name="logout_message">Would you like to try again?</string>
     <string name="logout_try_again">Try Again</string>
     <string name="logout_cancel">Cancel</string>
+    <string name="submit">Submit</string>
 
     <!-- Strings related to read review -->
     <string name="reviewerlabel">Reviewer:</string>

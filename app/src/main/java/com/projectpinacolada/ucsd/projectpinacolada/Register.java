@@ -1,6 +1,10 @@
 package com.projectpinacolada.ucsd.projectpinacolada;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.annotation.TargetApi;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -32,6 +36,7 @@ public class Register extends AppCompatActivity {
     private EditText mPasswordField;
     private EditText mVerifyPasswrodField;
     private EditText mLocationField;
+    private View mRegistrationFormView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,8 @@ public class Register extends AppCompatActivity {
         mPasswordField = (EditText) findViewById(R.id.passwordField);
         mVerifyPasswrodField = (EditText) findViewById(R.id.verifyPasswordField);
         mLocationField = (EditText) findViewById(R.id.locationField);
+
+        mRegistrationFormView = findViewById(R.id.registration_form_scroll);
 
         Intent intent = getIntent();
         if(intent.hasExtra("email")){
@@ -63,9 +70,14 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 boolean good = checkData();
                 if(good){
+                    //hide the registration screen to prevent multiple presses of the register button
+                    mRegistrationFormView.setVisibility(View.GONE);
                     boolean attempt = attemptRegistration();
                     if(attempt){
                         openNextActivity();
+                    }
+                    else {
+                        mRegistrationFormView.setVisibility(View.VISIBLE);
                     }
                 }
             }
@@ -218,4 +230,5 @@ public class Register extends AppCompatActivity {
     private boolean isLocationValid(String location) {
         return location.length() > 1;
     }
+
 }

@@ -34,7 +34,7 @@
                 android:hint="@string/name_tag"
                 android:inputType="textPersonName"
                 android:maxLines="1"
-                android:singleLine="false" />
+                android:singleLine="true" />
 
             <EditText
                 android:id="@+id/emailField"
@@ -91,7 +91,8 @@
                 android:layout_alignRight="@+id/verifyPasswordField"
                 android:layout_below="@+id/verifyPasswordField"
                 android:hint="@string/location_tag"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:singleLine="true" />
 
             <Button
                 android:id="@+id/registerButton"

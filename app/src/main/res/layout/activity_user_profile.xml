@@ -68,4 +68,13 @@
         android:layout_alignTop="@+id/user_num_reviews_label"
         android:layout_toRightOf="@+id/user_num_reviews_label"
         android:layout_toEndOf="@+id/user_num_reviews_label" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/profileImageButton"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/yellow_camera" />
 </RelativeLayout>

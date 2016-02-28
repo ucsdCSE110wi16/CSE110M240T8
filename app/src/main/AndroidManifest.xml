@@ -50,7 +50,8 @@
         <activity android:name=".ReadReviews.ReadReviewScreen" />
         <activity android:name=".ReadReviews.SingleItemView" />
         <activity android:name=".WriteReviewScreen" />
-        <activity android:name=".Register" />
+        <activity android:name=".Register"
+            android:noHistory="true" />
         <activity android:name=".UserProfile"></activity>
     </application>
 

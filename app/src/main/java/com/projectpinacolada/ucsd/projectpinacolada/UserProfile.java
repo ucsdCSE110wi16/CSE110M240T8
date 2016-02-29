@@ -36,6 +36,7 @@ public class UserProfile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("My Profile");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 

@@ -47,7 +47,6 @@ public class ProductInfo extends AppCompatActivity {
     Bitmap bitmap;
     ProgressDialog pDialog;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTitle("Product Information");

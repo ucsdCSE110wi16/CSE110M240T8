@@ -76,6 +76,10 @@ public class CameraActivity extends AppCompatActivity {
      */
     @Override
     public void onCreate(Bundle icicle) {
+
+        // Sets action bar title.
+        setTitle("Tap Screen to Capture");
+
         super.onCreate(icicle);
         setContentView(R.layout.activity_camera);
 

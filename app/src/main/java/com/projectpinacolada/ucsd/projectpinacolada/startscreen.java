@@ -11,6 +11,7 @@ public class startscreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("Click Camera Button to Scan");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startscreen);
 

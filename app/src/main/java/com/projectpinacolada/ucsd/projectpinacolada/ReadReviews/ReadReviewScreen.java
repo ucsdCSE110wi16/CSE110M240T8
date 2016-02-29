@@ -29,7 +29,7 @@ public class ReadReviewScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("Reviews");
+        setTitle("Click a Review to Show More");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_review_screen);
         // Execute RemoteDataTask AsyncTask

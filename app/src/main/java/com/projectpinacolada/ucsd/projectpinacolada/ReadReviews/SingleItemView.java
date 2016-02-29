@@ -19,6 +19,7 @@ public class SingleItemView extends AppCompatActivity{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setTitle("Review");
         super.onCreate(savedInstanceState);
         // Get the view from singleitemview.xml
         setContentView(R.layout.singleitemview);

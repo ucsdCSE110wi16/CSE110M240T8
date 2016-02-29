@@ -7,7 +7,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/primary"
     tools:context="com.projectpinacolada.ucsd.projectpinacolada.ProductInfo">
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -15,9 +17,11 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/product_name"
         android:id="@+id/productName"
+        android:textColor="@color/primaryMiddle"
         android:layout_alignParentBottom="false"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
+        android:layout_marginBottom="35px"
         android:foregroundGravity="top" />
 
     <FrameLayout
@@ -25,15 +29,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_weight="1"
+        android:layout_below="@+id/productName"
         android:layout_above="@+id/productDescription"
-        android:layout_below="@+id/productName">
+        android:layout_toRightOf="@+id/productDescription"
+        android:layout_alignRight="@+id/writeReviewButton"
+        android:layout_alignEnd="@+id/writeReviewButton">
 
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
+            android:layout_width="278dp"
+            android:layout_height="310dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
             android:layout_alignRight="@+id/writeReviewButton"
@@ -43,42 +49,48 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="false"
-            android:layout_alignParentTop="true" />
+            android:layout_alignParentTop="true"
+            android:layout_gravity="center" />
     </FrameLayout>
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/product_description"
+        android:text=""
         android:maxLines="5"
         android:id="@+id/productDescription"
+        android:textColor="@color/primaryDark"
         android:layout_above="@+id/readReviewButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-
-
     <Button
         android:onClick="readReviewsButtonClicked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="500px"
+        android:layout_height="250px"
         android:text="@string/read_reviews"
+        android:textColor="@color/primary"
         android:id="@+id/readReviewButton"
-        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20px"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="56dp" />
+        android:layout_above="@+id/averageRating"
+        android:background="@color/primaryDark"/>
 
     <Button
         android:onClick="writeReviewButtonClicked"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="500px"
+        android:layout_height="250px"
         android:text="@string/write_review"
+        android:textColor="@color/primary"
         android:id="@+id/writeReviewButton"
+        android:layout_marginBottom="20px"
         android:layout_alignTop="@+id/readReviewButton"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:background="@color/primaryDark"/>
 
     <RatingBar
         android:layout_width="wrap_content"
@@ -86,7 +98,9 @@
         android:id="@+id/averageRating"
         android:layout_alignParentBottom="true"
         android:isIndicator="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:progressTint="@color/complementAccent"
+        android:progressBackgroundTint="@color/primaryLight"/>
 
 
 </RelativeLayout>

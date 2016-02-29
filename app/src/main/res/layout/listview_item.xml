@@ -4,22 +4,37 @@
     android:layout_height="fill_parent" >
 
     <TextView
-        android:id="@+id/reviewerlabel"
+        android:id="@+id/reviewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/reviewerlabel"
-        android:layout_below="@+id/reviewRatingBar"
+        android:hint="Title"
+        android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/review"
-        android:layout_alignStart="@+id/review" />
+        android:layout_alignStart="@+id/review"
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="20px"/>
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reviewRatingBar"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_below="@+id/reviewTitle"
+        android:layout_alignLeft="@+id/review"
+        android:layout_alignStart="@+id/review"
+        android:layout_marginRight="40px"
+        android:layout_marginBottom="20px"
+        android:progressTint="@color/complementAccent"
+        android:progressBackgroundTint="@color/primaryLight" />
 
     <TextView
         android:id="@+id/reviewer"
         android:text="Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/review"
         android:layout_toRightOf="@+id/reviewRatingBar"
-        android:layout_toEndOf="@+id/reviewRatingBar" />
+        android:layout_alignTop="@+id/reviewRatingBar"
+        android:layout_alignBottom="@+id/reviewRatingBar" />
 
     <TextView
         android:id="@+id/review"
@@ -28,19 +43,11 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="26dp"
         android:layout_marginStart="26dp"
-        android:layout_below="@+id/reviewerlabel"
+        android:layout_below="@+id/reviewRatingBar"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20px"/>
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/reviewRatingBar"
-        style="?android:attr/ratingBarStyleSmall"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/reviewerlabel"
-        android:layout_alignStart="@+id/reviewerlabel"
-        android:layout_marginTop="37dp" />
     <!--android:text="@string/reviewlabel"-->
 <!--
     <TextView

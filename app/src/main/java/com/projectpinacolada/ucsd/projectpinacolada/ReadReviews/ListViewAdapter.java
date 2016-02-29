@@ -41,6 +41,7 @@ public class ListViewAdapter extends BaseAdapter{
     public class ViewHolder {
         TextView reviewers;
         TextView reviews;
+        TextView reviewTitle;
         RatingBar ratingBar;
     }
 
@@ -68,6 +69,7 @@ public class ListViewAdapter extends BaseAdapter{
             holder.reviewers = (TextView) view.findViewById(R.id.reviewer);
             holder.reviews = (TextView) view.findViewById(R.id.review);
             holder.ratingBar = (RatingBar) view.findViewById((R.id.reviewRatingBar));
+            holder.reviewTitle = (TextView) view.findViewById(R.id.reviewTitle);
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
@@ -76,6 +78,7 @@ public class ListViewAdapter extends BaseAdapter{
         holder.reviewers.setText(reviewsList.get(position).getReviewers());
         holder.reviews.setText(reviewsList.get(position).getReviews());
         holder.ratingBar.setRating((float) reviewsList.get(position).getReviewRating());
+        holder.reviewTitle.setText(reviewsList.get(position).getReviewTitle());
         /*
         holder.population.setText(worldpopulationlist.get(position)
                 .getPopulation());
@@ -95,6 +98,7 @@ public class ListViewAdapter extends BaseAdapter{
                 // Pass all data reviews
                 intent.putExtra("reviews",
                         (reviewsList.get(position).getReviews()));
+                intent.putExtra("reviewRating", reviewsList.get(position).getReviewRating());
 
                 // Start SingleItemView Class
                 context.startActivity(intent);

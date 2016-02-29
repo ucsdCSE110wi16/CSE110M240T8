@@ -50,6 +50,8 @@ public class ProductInfo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("Product Information");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_info);
         img = (ImageView)findViewById(R.id.img);
@@ -180,13 +182,13 @@ public class ProductInfo extends AppCompatActivity {
                     JSONObject currentObject = jsonArray.getJSONObject(i);
                     productName = currentObject.getString("name");
                     productNameTV.setText(productName);
-                    if(currentObject.has("shortDescription")){
+                    /*if(currentObject.has("shortDescription")){
                         productDescriptionTV.setText(currentObject.getString(Html.fromHtml("shortDescription").toString()));
                     }
                     else if(currentObject.has("longDescription")) {
                         String description = currentObject.getString("longDescription");
                         productDescriptionTV.setText(Html.fromHtml(description).toString().substring(0,Math.min(description.length(), 200)));
-                    }
+                    }*/
                     new LoadImage().execute(currentObject.getString("largeImage"));
 
 
@@ -242,7 +244,7 @@ public class ProductInfo extends AppCompatActivity {
 
         // Send product UPC to the write activity
         intent.putExtra("upcCode",upcCode);
-        intent.putExtra("productName", productName);
+        //intent.putExtra("productName", productName);
 
         // To get the return value, this must be a call for result
         startActivityForResult(intent, 1);

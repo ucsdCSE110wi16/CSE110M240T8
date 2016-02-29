@@ -30,18 +30,19 @@ public class WriteReviewScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("Write a Review");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_review_screen);
 
         // Initializing Text Views and Fields
-        productNameTV = (TextView) findViewById(R.id.productName);
+        //productNameTV = (TextView) findViewById(R.id.productName);
         reviewTitleTextField = (EditText) findViewById(R.id.reviewTitle);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         reviewTextField = (EditText) findViewById(R.id.review_text);
 
 
         // Populate product name
-        productNameTV.setText(getIntent().getStringExtra("productName"));
+        //productNameTV.setText(getIntent().getStringExtra("productName"));
 
         // create submit button
         submitButton = (Button) findViewById(R.id.write_review_submit);

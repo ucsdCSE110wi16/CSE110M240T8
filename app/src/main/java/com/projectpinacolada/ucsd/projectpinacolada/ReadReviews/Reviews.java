@@ -7,6 +7,7 @@ public class Reviews {
     private String review;
     private String reviewers;
     private double reviewRating;
+    private String reviewTitle;
 
     public String getReviews(){
         return review;
@@ -23,6 +24,10 @@ public class Reviews {
     public void setReviewers(String reviewers){
         this.reviewers = reviewers;
     }
+
+    public void setReviewTitle(String reviewTitle){this.reviewTitle = reviewTitle;}
+
+    public String getReviewTitle(){return reviewTitle;}
 
     // Get Set for reviewRating
     public double getReviewRating () {return reviewRating;}

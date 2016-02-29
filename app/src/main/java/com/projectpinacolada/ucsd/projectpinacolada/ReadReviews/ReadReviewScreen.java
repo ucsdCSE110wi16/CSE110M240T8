@@ -29,6 +29,7 @@ public class ReadReviewScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("Reviews");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read_review_screen);
         // Execute RemoteDataTask AsyncTask
@@ -74,6 +75,7 @@ public class ReadReviewScreen extends AppCompatActivity {
                         map.setReviewers((String) Review.get("reviewer"));
                         map.setReviews((String) Review.get("reviewText"));
                         map.setReviewRating ((double) Review.getDouble("rating"));
+                        map.setReviewTitle((String) Review.get("reviewTitle"));
                         reviewsList.add(map);
                 }
             } catch (ParseException e) {

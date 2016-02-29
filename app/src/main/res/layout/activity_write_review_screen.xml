@@ -13,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Write a Review For:"
         android:id="@+id/textView"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -33,47 +32,41 @@
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/review_text"
-        android:hint="@string/write_review_hint"
-        android:layout_below="@+id/ratingBar"
+        android:hint="Review (Optional)"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/reviewTitle"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="500px"
+        android:layout_height="250px"
         android:text="@string/write_review_submit"
+        android:textColor="@color/primary"
         android:id="@+id/write_review_submit"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="41dp" />
+        android:background="@color/primaryDark"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/product_name"
-        android:id="@+id/productName"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:progressTint="@color/complementAccent"
+        android:progressBackgroundTint="@color/primaryLight"
         android:id="@+id/ratingBar"
-        android:layout_below="@+id/reviewTitle"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/textView"
+        android:layout_marginBottom="50px"
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/reviewTitle"
-        android:hint="You can title your review here."
-        android:layout_below="@+id/productName"
+        android:hint="Title"
+        android:layout_below="@+id/ratingBar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"

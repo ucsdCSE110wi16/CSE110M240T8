@@ -16,9 +16,10 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/camera_button"
-        android:background="@drawable/yellow_camera"
+        android:foreground="@drawable/camera"
         android:clickable="true"
         android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="50px"
         android:contextClickable="false"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />

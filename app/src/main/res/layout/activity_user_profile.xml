@@ -76,5 +76,5 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:src="@drawable/yellow_camera" />
+        android:src="@drawable/camera" />
 </RelativeLayout>

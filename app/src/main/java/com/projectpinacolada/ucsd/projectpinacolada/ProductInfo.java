@@ -62,7 +62,6 @@ public class ProductInfo extends AppCompatActivity {
 
         // Initializing barcode information as TextView.
         productNameTV = (TextView) findViewById(R.id.productName);
-        productDescriptionTV = (TextView) findViewById(R.id.productDescription);
         averageRatingBar = (RatingBar) findViewById(R.id.averageRating);
         upcCode = getIntent().getStringExtra("barcode");
 

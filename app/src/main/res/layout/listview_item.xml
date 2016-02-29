@@ -46,7 +46,9 @@
         android:layout_below="@+id/reviewRatingBar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="20px"/>
+        android:layout_marginBottom="20px"
+        android:maxLines="5"
+        android:ellipsize="end"/>
 
     <!--android:text="@string/reviewlabel"-->
 <!--

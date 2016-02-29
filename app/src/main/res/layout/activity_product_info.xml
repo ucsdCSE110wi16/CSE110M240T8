@@ -38,8 +38,8 @@
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="278dp"
-            android:layout_height="310dp"
+            android:layout_width="256dp"
+            android:layout_height="286dp"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true"
             android:layout_alignRight="@+id/writeReviewButton"
@@ -68,8 +68,8 @@
 
     <Button
         android:onClick="readReviewsButtonClicked"
-        android:layout_width="500px"
-        android:layout_height="250px"
+        android:layout_width="350px"
+        android:layout_height="150px"
         android:text="@string/read_reviews"
         android:textColor="@color/primary"
         android:id="@+id/readReviewButton"
@@ -81,8 +81,8 @@
 
     <Button
         android:onClick="writeReviewButtonClicked"
-        android:layout_width="500px"
-        android:layout_height="250px"
+        android:layout_width="350px"
+        android:layout_height="150px"
         android:text="@string/write_review"
         android:textColor="@color/primary"
         android:id="@+id/writeReviewButton"

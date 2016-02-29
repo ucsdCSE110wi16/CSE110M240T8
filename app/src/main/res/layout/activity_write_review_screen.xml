@@ -41,8 +41,9 @@
         android:layout_alignParentEnd="true" />
 
     <Button
-        android:layout_width="500px"
-        android:layout_height="250px"
+        android:layout_width="400px"
+        android:layout_height="150px"
+        android:layout_marginBottom="20px"
         android:text="@string/write_review_submit"
         android:textColor="@color/primary"
         android:id="@+id/write_review_submit"

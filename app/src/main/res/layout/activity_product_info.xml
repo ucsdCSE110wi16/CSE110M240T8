@@ -48,6 +48,7 @@
         android:isIndicator="true"
         android:progressTint="@color/complementAccent"
         android:progressBackgroundTint="@color/primaryLight"
+        android:layout_marginBottom="50px"
         android:layout_above="@+id/readReviewButton" />
 
     <Button

@@ -386,11 +386,11 @@ public class CameraActivity extends AppCompatActivity {
         //Initialize Array
         if(validUPCs.isEmpty()){
             //add valid upcCodes
+            validUPCs.add("037000424314");
             validUPCs.add("796019829038");
             validUPCs.add("883904333791");
             validUPCs.add("886102281383");
             validUPCs.add("849803066055");
-            validUPCs.add("037000424314");
             validUPCs.add("024600010030");
         }
         Random randomGenerator = new Random();

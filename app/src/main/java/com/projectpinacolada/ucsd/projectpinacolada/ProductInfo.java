@@ -32,7 +32,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-public class ProductInfo extends AppCompatActivity {
+public class
+        ProductInfo extends AppCompatActivity {
 
     private TextView productNameTV;             // Text box displaying product name.
     private TextView productDescriptionTV;      // Text box displaying product description.

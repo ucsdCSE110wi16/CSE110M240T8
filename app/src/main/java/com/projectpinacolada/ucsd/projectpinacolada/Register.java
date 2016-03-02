@@ -42,6 +42,7 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        setTitle("Enter your information");
 
 
         mNameField = (EditText) findViewById(R.id.nameField);

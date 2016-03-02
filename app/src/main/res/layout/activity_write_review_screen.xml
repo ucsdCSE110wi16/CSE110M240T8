@@ -45,11 +45,11 @@
         android:layout_height="150px"
         android:layout_marginBottom="20px"
         android:text="@string/write_review_submit"
-        android:textColor="@color/primary"
         android:id="@+id/write_review_submit"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/primaryDark"/>
+        android:background="@color/primaryDark"
+        android:textColor="@color/primary"/>
 
 
     <RatingBar

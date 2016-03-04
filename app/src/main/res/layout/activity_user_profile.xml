@@ -31,11 +31,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/location_tag"
         android:id="@+id/user_location"
         android:layout_below="@+id/user_name"
-        android:layout_marginBottom="40px"
+        android:layout_marginBottom="20px"
         android:layout_toRightOf="@id/profileImageButton" />
 
     <TextView
@@ -82,11 +82,14 @@
 
     <ListView
         android:layout_width="wrap_content"
+        android:layout_marginBottom="80px"
+        android:layout_marginTop="80px"
         android:layout_height="wrap_content"
         android:id="@+id/listViewUserProfile"
         android:layout_below="@+id/profileImageButton"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/update_profile_button" />
+        android:layout_above="@+id/update_profile_button"
+        android:background="@drawable/listview_border" />
 
 </RelativeLayout>

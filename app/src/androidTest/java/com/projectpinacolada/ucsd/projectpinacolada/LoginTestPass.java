@@ -1,13 +1,7 @@
 package com.projectpinacolada.ucsd.projectpinacolada;
 
-import android.app.Application;
 import android.support.test.runner.AndroidJUnit4;
-import android.test.ApplicationTestCase;
-
 import android.support.test.rule.ActivityTestRule;
-import android.test.suitebuilder.annotation.LargeTest;
-import android.util.Log;
-
 
 import org.junit.After;
 import org.junit.Before;
@@ -29,7 +23,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 //unit test to test the login feature
 @RunWith(AndroidJUnit4.class)
-public class ApplicationTest {
+public class LoginTestPass {
 
     //vars to hold the user input
     String username;
@@ -48,8 +42,7 @@ public class ApplicationTest {
         username = "foo@bar.com";
         password = "foobar";
     }
-
-
+    
     //run the tests
     @Test
     public void changeText_sameActivity() {
@@ -72,7 +65,6 @@ public class ApplicationTest {
     public void logout() {
         onView(withId(R.id.logout_button)).perform(click());
     }
-
 }
 
 

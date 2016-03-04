@@ -15,11 +15,6 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        // Enable Local Datastore.
-        Parse.enableLocalDatastore(this);
-        // Add your initialization code here
-        Parse.initialize(this);
-
         //if the user has signed in before, they will skip this screen completely
         ParseUser parseUser = ParseUser.getCurrentUser();
         if(parseUser != null) {

@@ -58,6 +58,9 @@ public class ProductInfoPageTest {
         Intent myIntent = new Intent();
         myIntent.putExtra("barcode", productUPC);
         mActivityRule.launchActivity(myIntent);
+
+        //Mockito
+
         onView(withId(R.id.productName)).check(matches(withText(productName)));
     }
 

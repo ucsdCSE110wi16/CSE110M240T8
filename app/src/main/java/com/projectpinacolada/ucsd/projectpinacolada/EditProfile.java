@@ -28,18 +28,19 @@ public class EditProfile extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("Edit Profile Information");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        nameField = (EditText) findViewById(R.id.edit_name);
-        locationField = (EditText) findViewById(R.id.edit_location);
-        emailField = (EditText) findViewById(R.id.edit_email);
+        nameField = (EditText) findViewById(R.id.nameField);
+        emailField = (EditText) findViewById(R.id.emailField);
+        locationField = (EditText) findViewById(R.id.locationField);
 
         user = ParseUser.getCurrentUser();
 
         setFields();
 
-        submit = (Button) findViewById(R.id.submit_edit_button);
+        submit = (Button) findViewById(R.id.updateButton);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -111,6 +111,7 @@
                 android:text="@string/register_tag" />
 
         </RelativeLayout>
+
     </ScrollView>
 
 </RelativeLayout>

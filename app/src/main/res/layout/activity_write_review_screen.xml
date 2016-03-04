@@ -32,7 +32,7 @@
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/review_text"
-        android:hint="Review (Optional)"
+        android:hint="Review"
         android:layout_marginTop="33dp"
         android:layout_below="@+id/reviewTitle"
         android:layout_alignParentLeft="true"
@@ -50,7 +50,6 @@
         android:layout_centerHorizontal="true"
         android:background="@color/primaryDark"
         android:textColor="@color/primary"/>
-
 
     <RatingBar
         android:layout_width="wrap_content"

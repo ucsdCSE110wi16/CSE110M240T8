@@ -53,7 +53,7 @@
 
     <Button
         android:onClick="readReviewsButtonClicked"
-        android:layout_width="350px"
+        android:layout_width="400px"
         android:layout_height="150px"
         android:text="@string/read_reviews"
         android:textColor="@color/primary"
@@ -65,7 +65,7 @@
 
     <Button
         android:onClick="writeReviewButtonClicked"
-        android:layout_width="350px"
+        android:layout_width="400px"
         android:layout_height="150px"
         android:text="@string/write_review"
         android:textColor="@color/primary"

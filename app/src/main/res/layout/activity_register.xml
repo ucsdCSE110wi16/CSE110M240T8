@@ -109,6 +109,7 @@
                 android:textColor="@color/primary"
                 android:background="@color/primaryDark"
                 android:text="@string/register_tag" />
+
         </RelativeLayout>
     </ScrollView>
 

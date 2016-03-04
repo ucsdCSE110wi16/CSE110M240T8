@@ -13,7 +13,7 @@
     <string name="error_field_required">This field is required</string>
     <string name="error_invalid_name">This name is invalid</string>
     <string name="error_invalid_location">This location is invalid</string>
-    <string name="error_password_match">The passwords to not match</string>
+    <string name="error_password_match">The passwords do not match</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
@@ -25,14 +25,11 @@
     <string name="product_name">Product Name</string>
     <string name="product_description">Product Description</string>
     <string name="review_title">Title your review here</string>
-
     <string name="read_reviews">Read Reviews</string>
     <string name="write_review">Write Review</string>
-
-
     <string name="ok">OK</string>
     <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
-    <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
+    <string name="no_camera_permission">This application cannot run because it does not have the camera permission. The application will now exit.</string>
     <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
     <string name="title_activity_main">Barcode Reader Sample</string>
     <string name="barcode_header">Click &quot;Read Barcode&quot; to read a barcode</string>
@@ -46,26 +43,22 @@
     <string name="barcode_try_again">Try Again</string>
     <string name="barcode_random">Random</string>
     <string name="olay">Olay!</string>
-
     <string name="name_tag">Name</string>
     <string name="email_tag">"Email"</string>
     <string name="password_tag">"Password"</string>
     <string name="verify_password_tag">"Verify Password"</string>
     <string name="location_tag">"Location"</string>
     <string name="register_tag">"Register"</string>
-    <string name="num_reviews">Number of Reviews: </string>
+    <string name="num_reviews">"Number of Reviews: "</string>
     <string name="zero_reviews">0</string>
-    <string name="update_profile">Update Profile</string>
+    <string name="update_profile">Update</string>
     <string name="logout">Logout</string>
     <string name="review_title_length_min">Title must be at least 4 characters</string>
     <string name="review_title_length_max">Title must be less than 50 characters</string>
     <string name="review_text_length_min">Review must be at least 15 characters</string>
     <string name="review_text_length_max">Review must be less than 1000 characters</string>
-
-
     <string name="test_username">test@test.com</string>
     <string name="test_password">test123</string>
-
     <string name="logout_error">There was an error logging out</string>
     <string name="logout_message">Would you like to try again?</string>
     <string name="logout_try_again">Try Again</string>

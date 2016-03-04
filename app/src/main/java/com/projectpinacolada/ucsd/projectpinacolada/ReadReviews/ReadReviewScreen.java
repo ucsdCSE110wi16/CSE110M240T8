@@ -24,8 +24,6 @@ public class ReadReviewScreen extends AppCompatActivity {
     ProgressDialog mProgressDialog;
     ListViewAdapter adapter;
     private List<Reviews> reviewsList = null;
-    // long upc = 37000424314;
-    int reviewRating;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +86,7 @@ public class ReadReviewScreen extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void result) {
             // Locate the listview in listview_main.xml
-            listview = (ListView) findViewById(R.id.listview);
+            listview = (ListView) findViewById(R.id.listviewReadReviewScreen);
             // Pass the results into ListViewAdapter.java
             adapter = new ListViewAdapter(ReadReviewScreen.this,
                     reviewsList);

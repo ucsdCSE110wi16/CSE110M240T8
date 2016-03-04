@@ -44,7 +44,7 @@
         <Button
             android:id="@+id/email_sign_in_button"
             style="?android:textAppearanceSmall"
-            android:layout_width="350px"
+            android:layout_width="400px"
             android:layout_height="150px"
             android:text="@string/action_sign_in_short"
             android:background="@color/primaryDark"
@@ -59,7 +59,7 @@
             android:text="@string/action_register"
             android:background="@color/primaryDark"
             android:textColor="@color/primary"
-            android:layout_width="350px"
+            android:layout_width="400px"
             android:layout_height="150px"
             android:layout_below="@+id/password"
             android:layout_alignParentRight="true"

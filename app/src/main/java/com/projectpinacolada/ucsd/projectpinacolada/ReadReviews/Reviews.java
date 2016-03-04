@@ -2,6 +2,7 @@ package com.projectpinacolada.ucsd.projectpinacolada.ReadReviews;
 
 /**
  * Created by Darren on 2/14/2016.
+ * Getter/ setter class
  */
 public class Reviews {
     private String review;

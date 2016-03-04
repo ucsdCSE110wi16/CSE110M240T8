@@ -56,14 +56,15 @@ public class ApplicationTest {
         // Type text and then press the button.
         onView(withId(R.id.email)).perform(typeText(username), closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
+
+        // Press sign in
         onView(withId(R.id.email_sign_in_button)).perform(click());
 
-        //press on the ninja
+        // Go to user profile
         onView(withId(R.id.userButton)).perform(click());
 
         // Check that the user name is correct
-        onView(withId(R.id.user_name))
-                .check(matches(withText("Daniel")));
+        onView(withId(R.id.user_name)).check(matches(withText("Daniel")));
     }
 
     //logout after the test completes

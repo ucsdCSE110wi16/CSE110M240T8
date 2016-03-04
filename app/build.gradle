@@ -33,13 +33,6 @@ dependencies {
     // Important - the CameraSource implementation in this project requires version 8.1 or higher.
     compile 'com.google.android.gms:play-services:8.4.0'
 
-    compile(group: 'oauth.signpost', name: 'signpost-core', version: '1.2.1.2')
-    compile(group: 'oauth.signpost', name: 'signpost-commonshttp4', version: '1.2.1.2') {
-        exclude module: 'commons-logging'
-        exclude module: 'httpcore'
-        exclude module: 'httpclient'
-    }
-
     //Parse
     compile 'com.parse.bolts:bolts-android:1.4.0'
     compile 'com.parse:parse-android:1.13.0'

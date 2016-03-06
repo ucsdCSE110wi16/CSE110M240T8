@@ -21,7 +21,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
 public class ProductInfoPageTestPass {
 
-    //vars to hold the user input
+    //vars to hold values for the test
     String productUPC;
     String productName;
 
@@ -33,22 +33,21 @@ public class ProductInfoPageTestPass {
     //set the strings
     @Before
     public void setVars () {
+        //this upc should correspond to the product
         productUPC = "037000424314";
         productName = "Olay Ultra Moisture Body Wash with Shea Butter, 23.6 fl oz";
-
     }
 
     //run the tests
     @Test
     public void setupTest () {
+        //create a intent so that we can properly start the activity
         Intent myIntent = new Intent();
         myIntent.putExtra("barcode", productUPC);
         mActivityRule.launchActivity(myIntent);
 
-        //Mockito
-
+        //all that needs to be done is check the product name, if it matches, then the test passes
         onView(withId(R.id.productName)).check(matches(withText(productName)));
     }
 
-    // @After
 }

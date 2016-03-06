@@ -1,13 +1,10 @@
 package com.projectpinacolada.ucsd.projectpinacolada;
 
-import android.support.test.runner.AndroidJUnit4;
 import android.support.test.rule.ActivityTestRule;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
@@ -17,12 +14,12 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
-//unit test to test the login feature
-// this test is designed to pass
-@RunWith(AndroidJUnit4.class)
-public class LoginTestPass {
+// unit test to test the login feature
+// this test is designed to show invalid credentials will not be able to login
+public class LoginTestFail {
 
-    //vars to hold the user input
+
+    //vars to hold the invalid username/password
     String username;
     String password;
 
@@ -34,15 +31,16 @@ public class LoginTestPass {
 
     //set the strings for the user input
     @Before
-    public void initValidString() {
-        // Specify valid strings
-        username = "foo@bar.com";
-        password = "foobar";
+    public void initStrings() {
+        // some crazy strings which are not associated with a user
+        username = "abcdefg1234567test@thisisonlyatest.com";
+        password = "mypassowrddoesnotexist1234";
     }
-    
+
     //run the tests
     @Test
-    public void changeText_sameActivity() {
+    public void testUnsuccessfulLogin() {
+
         // Type the text into the email and password fields
         onView(withId(R.id.email)).perform(typeText(username), closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
@@ -50,23 +48,9 @@ public class LoginTestPass {
         // Press sign in
         onView(withId(R.id.email_sign_in_button)).perform(click());
 
-        // Go to user profile
-        onView(withId(R.id.userButton)).perform(click());
-
-        // Check that the user name is correct, if so, we are done
-        onView(withId(R.id.user_name)).check(matches(withText("Daniel")));
+        // check to see if we are still in the login screen
+        // if so, then we have passed this test
+        onView(withId(R.id.email_sign_in_button)).check(matches(withText("Sign in")));
     }
 
-    //logout after the test completes
-    @After
-    public void logout() {
-        //we are already on the user profile screen, so the logout button is present
-        onView(withId(R.id.logout_button)).perform(click());
-    }
 }
-
-
-
-
-
-

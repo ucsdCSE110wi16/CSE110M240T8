@@ -91,7 +91,9 @@
             android:singleLine="true"
             android:layout_below="@+id/view"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true" >
+            <requestFocus/>
+        </AutoCompleteTextView>
 
     </RelativeLayout>
 

@@ -64,6 +64,9 @@
     <string name="logout_try_again">Try Again</string>
     <string name="logout_cancel">Cancel</string>
     <string name="submit">Submit</string>
+    <string name="OK">OK</string>
+    <string name="Oops">OOPS!</string>
+    <string name="writeError">There was an error in submitting your review. Please check your internet connection and try again.</string>
 
     <!-- Strings related to read review -->
     <string name="reviewerlabel">Reviewer:</string>

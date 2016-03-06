@@ -1,7 +1,12 @@
 package com.projectpinacolada.ucsd.projectpinacolada;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,8 +16,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.RatingBar;
 
+import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 public class WriteReviewScreen extends AppCompatActivity {
 
@@ -26,6 +33,7 @@ public class WriteReviewScreen extends AppCompatActivity {
     String reviewText;
     double reviewRating;
     RatingBar ratingBar;
+    public boolean saveGood;
 
 
     @Override
@@ -39,6 +47,8 @@ public class WriteReviewScreen extends AppCompatActivity {
         reviewTitleTextField = (EditText) findViewById(R.id.reviewTitle);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         reviewTextField = (EditText) findViewById(R.id.review_text);
+
+        saveGood = true;
 
 
         // Populate product name
@@ -65,7 +75,24 @@ public class WriteReviewScreen extends AppCompatActivity {
             retVal = uploadToDB();
 
             if (!retVal) {
-                // TODO msg user with error
+                // give an error message to the user
+                //Display an alert dialog to see if user wants to try again or get a random item
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                builder1.setTitle(R.string.Oops);
+                builder1.setMessage(R.string.writeError);
+                builder1.setCancelable(true);
+                builder1.setIconAttribute(android.R.attr.alertDialogIcon);
+
+                builder1.setPositiveButton(
+                        R.string.OK,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+                AlertDialog alert11 = builder1.create();
+                alert11.show();
             } else {
                 //increment the number of reviews from the user
                 ParseUser.getCurrentUser().increment("numReviews");
@@ -133,6 +160,20 @@ public class WriteReviewScreen extends AppCompatActivity {
     // Method to publish WriteReviewScreen data fields to parse
     private boolean uploadToDB () {
 
+        //check if there is an internet connection
+        //if not, then return an error now
+        ConnectivityManager cm =
+                (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+
+        if(!isConnected){
+            saveGood = false;
+            return saveGood;
+        }
+
         ParseObject review = new ParseObject("Review");
         ParseUser currentUser = ParseUser.getCurrentUser();
 
@@ -146,9 +187,23 @@ public class WriteReviewScreen extends AppCompatActivity {
         review.put("reviewText", reviewText);
         review.put("rating", reviewRating);
         review.put("reviewTitle", reviewTitle);
-        review.saveInBackground();
 
-        return true;
+        //save the review with a callback
+        review.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if (e != null) {
+                    //there was an exception, internet must have been lost
+                    saveGood = false;
+                }
+                else {
+                    //there was no error, continue as normal
+                    saveGood = true;
+                }
+            }
+        });
+
+        return saveGood;
     }
 
     private boolean titleValid() {

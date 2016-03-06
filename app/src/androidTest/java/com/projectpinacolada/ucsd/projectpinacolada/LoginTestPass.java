@@ -17,11 +17,8 @@ import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 
-/**
- * <a href="http://d.android.com/tools/testing/testing_android.html">Testing Fundamentals</a>
- */
-
 //unit test to test the login feature
+// this test is designed to pass
 @RunWith(AndroidJUnit4.class)
 public class LoginTestPass {
 
@@ -35,10 +32,10 @@ public class LoginTestPass {
             SplashScreen.class);
 
 
-    //set the strings
+    //set the strings for the user input
     @Before
     public void initValidString() {
-        // Specify a valid string.
+        // Specify valid strings
         username = "foo@bar.com";
         password = "foobar";
     }
@@ -46,7 +43,7 @@ public class LoginTestPass {
     //run the tests
     @Test
     public void changeText_sameActivity() {
-        // Type text and then press the button.
+        // Type the text into the email and password fields
         onView(withId(R.id.email)).perform(typeText(username), closeSoftKeyboard());
         onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
 
@@ -56,13 +53,14 @@ public class LoginTestPass {
         // Go to user profile
         onView(withId(R.id.userButton)).perform(click());
 
-        // Check that the user name is correct
+        // Check that the user name is correct, if so, we are done
         onView(withId(R.id.user_name)).check(matches(withText("Daniel")));
     }
 
     //logout after the test completes
     @After
     public void logout() {
+        //we are already on the user profile screen, so the logout button is present
         onView(withId(R.id.logout_button)).perform(click());
     }
 }

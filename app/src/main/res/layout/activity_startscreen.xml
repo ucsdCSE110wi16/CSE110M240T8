@@ -10,29 +10,42 @@
     tools:context="com.projectpinacolada.ucsd.projectpinacolada.startscreen"
     android:background="@color/primary"
     android:clipChildren="false"
-    android:clipToPadding="false">
+    android:clipToPadding="false"
+    >
+
+
 
     <Button
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/camera_button"
         android:background="@drawable/camera"
+        android:backgroundTint="@color/primaryDark"
         android:clickable="true"
         android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="50px"
         android:contextClickable="false"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-    <ImageButton
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/userButton"
-        android:background="@drawable/ninja"
         android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/userButton"
+        android:layout_alignStart="@+id/userButton"
+        android:layout_alignRight="@+id/userButton"
+        android:layout_alignEnd="@+id/userButton"
+        android:layout_marginTop="17dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userButton"
+        android:background="@drawable/simpleninja"
+        android:backgroundTint="@color/primaryDark"
+        android:clickable="true"
+        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:clickable="true" />
+        android:layout_marginBottom="17dp"
+        />
+
+
 
 
 </RelativeLayout>

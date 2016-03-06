@@ -11,7 +11,7 @@ public class startscreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("Click Camera Button to Scan");
+        setTitle("Home");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startscreen);
 
@@ -23,7 +23,7 @@ public class startscreen extends AppCompatActivity {
             }
         });
 
-        ImageButton profileButton = (ImageButton) findViewById(R.id.userButton);
+        Button profileButton = (Button) findViewById(R.id.userButton);
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

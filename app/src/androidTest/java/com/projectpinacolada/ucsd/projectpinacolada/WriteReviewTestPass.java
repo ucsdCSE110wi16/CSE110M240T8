@@ -50,7 +50,7 @@ public class WriteReviewTestPass {
         // click on the write review button
         onView(withId(R.id.writeReviewButton)).perform(click());
 
-        // Type the text into the email and password fields
+        // Type the text into the fields
         onView(withId(R.id.reviewTitle)).perform(typeText(title), closeSoftKeyboard());
         onView(withId(R.id.review_text)).perform(typeText(body), closeSoftKeyboard());
 

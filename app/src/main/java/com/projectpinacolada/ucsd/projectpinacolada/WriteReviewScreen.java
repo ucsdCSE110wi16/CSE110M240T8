@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -47,9 +48,11 @@ public class WriteReviewScreen extends AppCompatActivity {
         reviewTitleTextField = (EditText) findViewById(R.id.reviewTitle);
         ratingBar = (RatingBar) findViewById(R.id.ratingBar);
         reviewTextField = (EditText) findViewById(R.id.review_text);
+        reviewTitleTextField.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        reviewTextField.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
 
+        //set the default value
         saveGood = true;
-
 
         // Populate product name
         //productNameTV.setText(getIntent().getStringExtra("productName"));

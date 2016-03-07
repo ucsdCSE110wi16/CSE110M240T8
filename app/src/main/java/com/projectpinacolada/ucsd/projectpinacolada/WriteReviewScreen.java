@@ -205,6 +205,11 @@ public class WriteReviewScreen extends AppCompatActivity {
                 }
             }
         });
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         return saveGood;
     }

@@ -11,7 +11,7 @@ public class startscreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("Home");
+        setTitle("Click to Scan or View Profile");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_startscreen);
 

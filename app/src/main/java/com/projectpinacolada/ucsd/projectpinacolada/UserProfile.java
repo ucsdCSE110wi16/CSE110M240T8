@@ -101,7 +101,7 @@ public class UserProfile extends AppCompatActivity {
 
     private void startEditProfile() {
         Intent intent = new Intent(this, EditProfile.class);
-        startActivity(intent);
+        startActivityForResult(intent, 1500);
     }
 
     private void logout() {
@@ -228,6 +228,9 @@ public class UserProfile extends AppCompatActivity {
             imageBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
             imageBytes = stream.toByteArray();
             sendNewPicture();
+        }
+        else if(requestCode == 1500){
+            setUserInfo();
         }
     }
 

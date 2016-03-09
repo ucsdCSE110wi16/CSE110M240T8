@@ -1,5 +1,7 @@
 package com.projectpinacolada.ucsd.projectpinacolada;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -68,6 +70,8 @@ public class EditProfile extends AppCompatActivity {
 
         good = updateParse();
         if(good){
+            Intent intent = new Intent(this, UserProfile.class);
+            setResult(Activity.RESULT_OK, intent);
             //return to previous screen
             finish();
         }

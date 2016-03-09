@@ -222,10 +222,10 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         if (cancel) {
             // There was an error; don't attempt login and focus the first
             // form field with an error.
-            //focusView.requestFocus();
+            focusView.requestFocus();
 
-            // for now we will login with dummy for testing when noting is input
-            // TODO: Remove when testing is done
+            /*// for now we will login with dummy for testing when noting is input
+            // Remove when testing is done
             parseUser.setEmail(getString(R.string.test_username));
             parseUser.setPassword(getString(R.string.test_password));
             parseUser.setUsername(getString(R.string.test_username));
@@ -240,7 +240,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 mPasswordView.setError(getString(R.string.error_incorrect_password));
                 focusView = mEmailView;
                 focusView.requestFocus();
-            }
+            }*/
 
 
         } else {

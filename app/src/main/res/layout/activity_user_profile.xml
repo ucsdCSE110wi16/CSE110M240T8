@@ -13,11 +13,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/profileImageButton"
-        android:src="@drawable/camera"
+        android:src="@drawable/camera_user_profile"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="40px"
-        android:background="@drawable/rounded_button" />
+        android:background="@color/primaryAccent"/>
 
     <TextView
         android:layout_width="wrap_content"

@@ -8,7 +8,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@color/primary"
-    tools:context="com.projectpinacolada.ucsd.projectpinacolada.ProductInfo">
+    tools:context="com.projectpinacolada.ucsd.projectpinacolada.ProductInfo"
+    android:id="@+id/productInfoLayout">
 
     <TextView
         android:layout_width="wrap_content"

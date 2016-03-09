@@ -1,4 +1,4 @@
- <resources>
+<resources>
     <string name="app_name">Project Pina Colada</string>
 
     <!-- Strings related to login -->
@@ -69,6 +69,10 @@
     <string name="writeError">There was an error in submitting your review. Please check your internet connection and try again.</string>
     <string name="toast_no_reviews_yet">"You have not left any reviews yet! Scan an item to leave a review.</string>
 
+    <string name="product_failure_error">Could not find product</string>
+    <string name="product_failure_message">Returning to home screen</string>
+    <string name="yes">Yes</string>
+    <string name="home">Home Page</string>
     <!-- Strings related to read review -->
     <string name="reviewerlabel">Reviewer:</string>
     <string name="reviewlabel">Review</string>

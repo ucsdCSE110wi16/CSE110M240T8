@@ -1,6 +1,8 @@
 package com.projectpinacolada.ucsd.projectpinacolada;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +14,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.parse.ParseException;
@@ -150,6 +153,7 @@ public class
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+            setError();
         } catch (JSONException e) {
             e.printStackTrace();
         } finally {
@@ -193,13 +197,44 @@ public class
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    setError();
                 }
             }
         } catch (JSONException e) {
             e.printStackTrace();
+            setError();
         }
         // Set average rating.
         averageRatingBar.setRating((float) getAverageRating(upcCode));
+    }
+
+    public void openCamera() {
+        Intent intent = new Intent(this,CameraActivity.class);
+
+        startActivity(intent);
+    }
+
+    public void setError(){
+        RelativeLayout layout = (RelativeLayout) this.findViewById(R.id.productInfoLayout);
+        layout.setVisibility(RelativeLayout.GONE);
+        //Display an alert dialog to see if user wants to try again or get a random item
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setTitle(R.string.product_failure_error);
+        builder1.setMessage(R.string.product_failure_message);
+        builder1.setCancelable(false);
+        builder1.setIconAttribute(android.R.attr.alertDialogIcon);
+
+        builder1.setPositiveButton(
+                R.string.OK,
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        finish();
+                    }
+                });
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
     }
 
     // Takes UPC code and computes average ratings for our product

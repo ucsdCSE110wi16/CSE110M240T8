@@ -23,6 +23,8 @@ public class WriteReviewTestPass {
     String title;
     String body;
     String productUPC;
+    String username;
+    String password;
 
     //the rule to be used to start the app
     @Rule
@@ -37,6 +39,17 @@ public class WriteReviewTestPass {
         title = "This is the best movie out there!";
         body = "I do not know how I have gone so long without this movie. It has literally saved my life!";
         productUPC = "883904333791"; //james bond movie
+        username = "x@y.com";
+        password = "xyxyx";
+
+        // Sign In
+        ActivityTestRule<LoginActivity> mActivityRule2 = new ActivityTestRule(LoginActivity.class, false, false);
+        Intent intent = new Intent();
+        mActivityRule2.launchActivity(intent);
+        onView(withId(R.id.email)).perform(typeText(username), closeSoftKeyboard());
+        onView(withId(R.id.password)).perform(typeText(password), closeSoftKeyboard());
+        onView(withId(R.id.email_sign_in_button)).perform(click());
+
     }
 
     //run the tests

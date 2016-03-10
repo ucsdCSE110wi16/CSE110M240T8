@@ -35,8 +35,8 @@ public class UserRegistrationTestPass {
 
     //the rule to be used to start the app
     @Rule
-    public ActivityTestRule<SplashScreen> mActivityRule = new ActivityTestRule(
-            SplashScreen.class);
+    public ActivityTestRule<LoginActivity> mActivityRule = new ActivityTestRule(
+            LoginActivity.class);
 
 
     //set the strings

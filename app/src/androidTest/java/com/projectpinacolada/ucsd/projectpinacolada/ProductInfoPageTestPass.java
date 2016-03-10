@@ -35,7 +35,7 @@ public class ProductInfoPageTestPass {
     public void setVars () {
         //this upc should correspond to the product
         productUPC = "037000424314";
-        productName = "Olay Ultra Moisture Body Wash with Shea Butter, 23.6 fl oz";
+        productName = "OLAY Ultra Moisture Body Wash with Shea Butter 23.60 oz";
     }
 
     //run the tests

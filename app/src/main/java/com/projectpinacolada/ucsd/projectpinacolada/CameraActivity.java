@@ -387,7 +387,6 @@ public class CameraActivity extends AppCompatActivity {
         if(validUPCs.isEmpty()){
             //add valid upcCodes
             validUPCs.add("037000424314");
-            validUPCs.add("796019829038");
             validUPCs.add("883904333791");
             validUPCs.add("886102281383");
             validUPCs.add("849803066055");
@@ -395,7 +394,7 @@ public class CameraActivity extends AppCompatActivity {
         }
         Random randomGenerator = new Random();
         Barcode barcodeValid = new Barcode();
-        barcodeValid.displayValue = validUPCs.get(randomGenerator.nextInt(5));
+        barcodeValid.displayValue = validUPCs.get(randomGenerator.nextInt(4));
         Intent data = new Intent(this, ProductInfo.class);
         data.putExtra("barcode", barcodeValid.displayValue);
         startActivity(data);

@@ -25,7 +25,7 @@ public class WriteReviewTestFail {
 
     //the rule to be used to start the app
     @Rule
-    public ActivityTestRule<SplashScreen> mActivityRule = new ActivityTestRule(
+    public ActivityTestRule<ProductInfo> mActivityRule = new ActivityTestRule(
             ProductInfo.class, false, false);
 
 

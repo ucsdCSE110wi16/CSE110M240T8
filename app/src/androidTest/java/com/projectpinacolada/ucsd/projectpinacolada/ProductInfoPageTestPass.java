@@ -16,8 +16,10 @@ import org.junit.Test;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
+import static org.hamcrest.CoreMatchers.containsString;
 
 public class ProductInfoPageTestPass {
 
@@ -35,7 +37,8 @@ public class ProductInfoPageTestPass {
     public void setVars () {
         //this upc should correspond to the product
         productUPC = "037000424314";
-        productName = "OLAY Ultra Moisture Body Wash with Shea Butter 23.60 oz";
+        //productName = "Olay Ultra Moisture Body Wash with Shea Butter, 23.6 fl oz";
+        productName = "Moisture";
     }
 
     //run the tests
@@ -47,7 +50,7 @@ public class ProductInfoPageTestPass {
         mActivityRule.launchActivity(myIntent);
 
         //all that needs to be done is check the product name, if it matches, then the test passes
-        onView(withId(R.id.productName)).check(matches(withText(productName)));
+        onView(withId(R.id.productName)).check(matches(withText(containsString(productName))));
     }
 
 }
